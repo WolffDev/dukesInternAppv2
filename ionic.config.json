@@ -1,0 +1,8 @@
+{
+  "name": "dukesInternApp",
+  "app_id": "39342267",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

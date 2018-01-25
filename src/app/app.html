@@ -1,1 +1,37 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<!-- Contents of the side menu gets defined down below -->
+<ion-menu [content]="nav">
+	<ion-header>
+		<ion-toolbar>
+			<ion-title>Menu</ion-title>
+		</ion-toolbar>
+	</ion-header>
+
+	<ion-content>
+		<ion-list>
+			<button
+				ion-item
+				icon-lect>
+					<ion-icon name="contact"></ion-icon>
+					Nyheder
+			</button>
+		</ion-list>
+
+		<ion-list>
+			<button
+				ion-item
+				icon-lect>
+					<ion-icon name="log-out"></ion-icon>
+					Log ud
+			</button>
+		</ion-list>
+		
+		<ion-list padding>
+			Caroline<br>Luna<br>Mor<br>Far
+		</ion-list>
+
+
+	</ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #nav></ion-nav>

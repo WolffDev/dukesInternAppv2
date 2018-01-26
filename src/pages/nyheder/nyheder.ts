@@ -19,4 +19,15 @@ export class NyhederPage {
     console.log("Test message");
   }
 
+  testDetails() {
+    this.navCtrl.push('NyhedDetailPage')
+  }
+
+  updateNews(refresher) {
+    setTimeout(() => {
+      console.log(event);
+      refresher.complete();
+    }, 2000)
+  }
+
 }

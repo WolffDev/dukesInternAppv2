@@ -1,4 +1,3 @@
-import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ForumPage } from './forum';
@@ -9,7 +8,6 @@ import { ForumPage } from './forum';
   ],
   imports: [
     IonicPageModule.forChild(ForumPage),
-    ComponentsModule
   ],
 })
 export class ForumPageModule {}

@@ -1,0 +1,15 @@
+<div class="stats-container">
+
+  <div class="attendess-container">
+    <h3>Antal tilmeldinger:
+      <span *ngIf="attendees | async; else loadingText">
+        {{attendees | async}}
+      </span>
+      <ng-template #loadingText><span style="font-size:12px;">henter data...</span></ng-template>
+    </h3>
+  </div>
+
+  <div class="serverstatus-container">
+      <button ion-button (click)="clogHttp()">clog text</button>
+  </div>
+</div>

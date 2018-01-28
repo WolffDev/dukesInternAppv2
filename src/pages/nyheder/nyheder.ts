@@ -1,3 +1,5 @@
+import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
+import { ServerStatsServiceProvider } from './../../providers/server-stats-service/server-stats-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
@@ -8,11 +10,10 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class NyhederPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public nyhederService: NyhederServiceProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NyhederPage');
+  ionViewDidLoad(){
   }
 
   sendConsoleMsg() {
@@ -27,7 +28,7 @@ export class NyhederPage {
     setTimeout(() => {
       console.log(event);
       refresher.complete();
-    }, 2000)
+    }, 3000)
   }
 
 }

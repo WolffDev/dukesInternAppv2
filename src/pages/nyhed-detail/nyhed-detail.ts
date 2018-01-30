@@ -15,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NyhedDetailPage {
 
+  data;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NyhedDetailPage');
+    this.data = this.navParams.get('data');
+    console.log(this.data);
   }
 
 }

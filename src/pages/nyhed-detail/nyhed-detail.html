@@ -1,7 +1,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>nyhed-detail</ion-title>
+    <ion-title> {{ data?.title }} </ion-title>
+    <ion-buttons end>
+      @{{ data?.author | firstWord:false }}
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

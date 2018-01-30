@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { StatsViewModule } from './../../components/stats-view/stats-view.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
@@ -11,7 +12,8 @@ import { NyhederPage } from './nyheder';
   imports: [
     IonicPageModule.forChild(NyhederPage),
     StatsViewModule,
-    AvatarModule
+    AvatarModule,
+    PipesModule
   ],
 })
 export class NyhederPageModule {}

@@ -10,4 +10,4 @@ import { TabsPage } from './tabs';
     IonicPageModule.forChild(TabsPage),
   ],
 })
-export class NyhederPageModule {}
+export class TabsPageModule {}

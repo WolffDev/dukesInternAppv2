@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header class="shadow-default">
+<ion-header>
 
   <ion-navbar>
     <ion-buttons left>
@@ -31,12 +31,55 @@
 
   <stats-view></stats-view>
 
-  <button ion-button (click)="sendConsoleMsg()">Luna Mor Far</button>
-  <button ion-button (click)="testDetails()">Test navpush</button>
-
-  <ion-card>
-    <ion-header></ion-header>
+  <ion-card
+    *ngFor="let n of news" 
+    class="news-card shadow-default">
+    <ion-card-header>
+      {{ n?.title }}
+    </ion-card-header>
+    <ion-card-content>
+      <avatar
+        [name]="n?.author"
+        displayType="circle" 
+        size="70">
+      </avatar>
+      <p>{{ n?.body }}</p>
+    </ion-card-content>
+    <ion-list>
+      <ion-item>
+        <span class="author">@{{ n?.author }}</span>
+        <button
+          ion-button 
+          item-end 
+          outline
+          color="light"
+          (click)="newsDetails(n)">Læs mere</button>
+      </ion-item>
+    </ion-list>
   </ion-card>
-  <avatar name="Test" displayType="circle"></avatar>
+
+  <!-- <ion-card
+    class="news-card shadow-default" 
+    ion-grid *ngFor="let n of news; let i = index" 
+    (click)="newsDetails(n)">
+    <div ion-row>
+      <div ion-col col-7>
+        <h3>{{n.title}}</h3>
+      </div>
+    </div>
+    <div ion-row>
+      <div ion-col col-3 center>
+        <avatar name="David Wolff" displayType="circle" size="70"></avatar>
+      </div>
+      <div ion-col col-9>
+        <p>{{n.body}}</p>
+      </div>
+    </div>
+    <div ion-row class="author">
+      <div ion-col>
+        @{{n.author}}
+      </div>
+    </div>
+  </ion-card> -->
   
 </ion-content>

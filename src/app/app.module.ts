@@ -9,6 +9,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServerStatsServiceProvider } from '../providers/server-stats-service/server-stats-service';
 import { NyhederServiceProvider } from '../providers/nyheder-service/nyheder-service';
 import { AvatarModule } from 'ng2-avatar';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { StorageServiceProvider } from '../providers/storage-service/storage-service';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { AvatarModule } from 'ng2-avatar';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServerStatsServiceProvider,
     NyhederServiceProvider,
+    AuthServiceProvider,
+    StorageServiceProvider,
   ]
 })
 export class AppModule {}

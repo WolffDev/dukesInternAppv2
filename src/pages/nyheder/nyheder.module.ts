@@ -13,7 +13,7 @@ import { NyhederPage } from './nyheder';
     IonicPageModule.forChild(NyhederPage),
     StatsViewModule,
     AvatarModule,
-    PipesModule
+    PipesModule,
   ],
 })
 export class NyhederPageModule {}

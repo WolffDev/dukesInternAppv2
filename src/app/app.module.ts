@@ -1,9 +1,9 @@
+import { NativeStorage } from '@ionic-native/native-storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServerStatsServiceProvider } from '../providers/server-stats-service/server-stats-service';
@@ -31,8 +31,10 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
     MyApp
   ],
   providers: [
+    NativeStorage,
     StatusBar,
     SplashScreen,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServerStatsServiceProvider,
     NyhederServiceProvider,

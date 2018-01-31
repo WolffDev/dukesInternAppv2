@@ -11,8 +11,14 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 export class NyhederPage {
 
   news;
+  token;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public nyhederService: NyhederServiceProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private alertCtrl: AlertController, 
+    public nyhederService: NyhederServiceProvider,
+  ) {
   }
 
   ionViewDidLoad(){

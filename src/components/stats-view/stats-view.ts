@@ -1,4 +1,3 @@
-import { ServerStatsServiceProvider } from './../../providers/server-stats-service/server-stats-service';
 import { Component } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -13,10 +12,8 @@ export class StatsViewComponent {
   attendees;
   attendeesAPI;
 
-  constructor(public serverStatsService: ServerStatsServiceProvider) {
+  constructor() {
     console.log('constructor load from statsView');
-    this.attendees = this.getTestAsync();
-    this.getAttendees();
   }
 
   ionViewDidLoad(){
@@ -25,13 +22,6 @@ export class StatsViewComponent {
   ngOnInit() {
   }
 
-  async getAttendees() {
-    let response = await this.serverStatsService.getAttendess();
-    return response.subscribe(res => {
-      console.log(res[0]);
-      this.attendeesAPI = res[0];
-    });
-  }
 
   clogHttp() {
     console.log(this.attendeesAPI.name);

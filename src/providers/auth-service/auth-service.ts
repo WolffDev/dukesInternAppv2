@@ -10,8 +10,31 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello AuthServiceProvider Provider');
+  isAuthenticated: boolean = false;
+  isLoggedIn: boolean = false;
+  private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
+
+  constructor(
+    private http: HttpClient,
+    ) {
   }
+
+  login(username, password) {
+    let credentials = {
+      'username': username,
+      'password': password
+    };
+
+    return new Promise( (resolve, reject) => {
+      this.http.post(this.loginUrl, credentials).subscribe( res => {
+        this.isLoggedIn = true;
+
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      })
+    })
+  }
+
 
 }

@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class LoginPage {
 
   constructor(
-    public navCtrl: NavController, 
+    private navCtrl: NavController, 
     private auth: AuthServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController) {
@@ -32,7 +32,6 @@ export class LoginPage {
       .then(res => {
         console.log(res);
         loading.dismiss();
-        this.navCtrl.setRoot('TabsPage');
       })
       .catch(err => {
         console.log(err);

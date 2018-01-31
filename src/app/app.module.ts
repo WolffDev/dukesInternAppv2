@@ -34,7 +34,6 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
     NativeStorage,
     StatusBar,
     SplashScreen,
-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServerStatsServiceProvider,
     NyhederServiceProvider,

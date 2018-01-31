@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -10,13 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthServiceProvider {
 
-  isAuthenticated: boolean = false;
-  isLoggedIn: boolean = false;
+  authChanged = new Subject<boolean>();
+  authenticated: boolean = false;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
 
   constructor(
-    private http: HttpClient,
-    ) {
+    private http: HttpClient) {
   }
 
   login(username, password) {
@@ -27,8 +27,8 @@ export class AuthServiceProvider {
 
     return new Promise( (resolve, reject) => {
       this.http.post(this.loginUrl, credentials).subscribe( res => {
-        this.isLoggedIn = true;
-
+        this.authenticated = true;
+        this.authChanged.next(this.authenticated);
         resolve(res);
       }, (err) => {
         reject(err);

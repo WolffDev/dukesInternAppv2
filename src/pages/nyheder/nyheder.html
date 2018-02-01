@@ -30,7 +30,7 @@
   </ion-refresher>
 
   <stats-view></stats-view>
-
+  <button ion-button (click)="getUserData()">Get user data</button>
   <ion-card
     *ngFor="let n of news" 
     class="news-card shadow-default">

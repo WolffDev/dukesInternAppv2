@@ -1,9 +1,10 @@
+import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -12,9 +13,10 @@ export class LoginPage {
 
   constructor(
     private navCtrl: NavController, 
-    private auth: AuthServiceProvider,
+    private authService: AuthServiceProvider,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private storageService: StorageServiceProvider) {
 
   }
 
@@ -28,9 +30,12 @@ export class LoginPage {
     });
     loading.present();
 
-    this.auth.login(form.value.username, form.value.password)
+    this.authService.login(form.value.username, form.value.password)
       .then(res => {
-        console.log(res);
+        // console.log('fre login',res);
+        this.storageService.setToken(res['token']);
+        this.storageService.setUserData(res['user']);
+        this.authService.authChanged.next(true);
         loading.dismiss();
       })
       .catch(err => {

@@ -1,37 +1,51 @@
+import { LoginPage } from './../pages/login/login';
+import { TabsPage } from './../pages/tabs/tabs';
 import { AuthServiceProvider } from './../providers/auth-service/auth-service';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: string;
+  rootPage: any;
   isAuth: boolean = false;
-  subscription: Subscription;
 
 
-  @ViewChild('nav') nav: NavController
+  @ViewChild('nav') nav: NavController;
 
 
-  constructor(statusBar: StatusBar, splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider) {
+  constructor(statusBar: StatusBar, splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider, public menuCtrl: MenuController) {
     platform.ready().then(() => {
       statusBar.hide();
       splashScreen.hide();
+      
     });
   
     this.authService.authChanged.subscribe( (isAuth: boolean) => {
-      console.log('hello from subs');
       this.isAuth = isAuth;
-      if(isAuth) {
-        this.rootPage = ('TabsPage');
+      if(this.isAuth) {
+        this.nav.setRoot(TabsPage);
       } else {
-        this.rootPage = ('LoginPage');
+        this.nav.setRoot(LoginPage);
       }
     })
+  }
+  ngOnInit() {
+    console.log('hello from app.com onInit');
+    this.authService.checkAuth();
+    if(this.authService.authenticated == false) {
+      this.rootPage = LoginPage;
+    } else {
+      this.rootPage = TabsPage;
+    }
+  }
+
+  logout() {
+    this.authService.logout();
+    this.menuCtrl.close();
   }
 }

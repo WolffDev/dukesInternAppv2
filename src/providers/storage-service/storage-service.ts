@@ -7,22 +7,35 @@ export class StorageServiceProvider {
   constructor(private storage: NativeStorage ) {
   }
 
-  getToken() {
-   return this.storage.getItem('token')
+  async getToken() {
+   return await this.storage.getItem('token')
       .then( token => token )
       .catch( err => err);
   }
 
-  setToken(token) {
-    return this.storage.setItem('token', token)
+  async setToken(token) {
+    return await this.storage.setItem('token', token)
       .then( res => res)
       .catch( err => err);
   }
 
-  setUserData(userData) {
-    this.storage.setItem('user', userData)
+  async setUserData(userData) {
+    return await this.storage.setItem('user', userData)
       .then(res => res)
       .catch(err => err)
+  }
+
+  async getUserData() {
+    return await this.storage.getItem('user')
+      .then(res => res)
+      .catch( err => err)
+  }
+
+  async clearStorage() {
+    await this.storage.setItem('user', '')
+    await this.storage.setItem('token', '')
+      .then(res => res)
+      .catch( err => err)
   }
 
 }

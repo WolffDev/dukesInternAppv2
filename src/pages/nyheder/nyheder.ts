@@ -1,3 +1,4 @@
+import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
 import { ServerStatsServiceProvider } from './../../providers/server-stats-service/server-stats-service';
 import { Component } from '@angular/core';
@@ -11,14 +12,20 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 export class NyhederPage {
 
   news;
-  token;
+  userData;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private alertCtrl: AlertController, 
     public nyhederService: NyhederServiceProvider,
+    public storageService: StorageServiceProvider
   ) {
+  }
+
+  async getUserData() {
+    this.userData = await this.storageService.getUserData();
+    this.alert(this.userData.name);
   }
 
   ionViewDidLoad(){
@@ -32,7 +39,17 @@ export class NyhederPage {
   }
 
   newsDetails(data) {
-    this.navCtrl.push('NyhedDetailPage', {data})
+    this.navCtrl.push('NyhedDetailPage', {data});
+  }
+
+  alert(data) {
+    let alert = this.alertCtrl.create({
+      title: 'Test',
+      message: data,
+      buttons: ['Okay']
+    });
+    alert.present();
+
   }
 
   sendConsoleMsg() {

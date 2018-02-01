@@ -1,3 +1,5 @@
+import { TabsPage } from './../pages/tabs/tabs';
+import { LoginPage } from './../pages/login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +18,8 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
 @NgModule({
   declarations: [
     MyApp,
+    TabsPage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TabsPage,
+    LoginPage,
   ],
   providers: [
     NativeStorage,

@@ -1,22 +1,21 @@
+import { StorageServiceProvider } from './../storage-service/storage-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-/*
-  Generated class for the AuthServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class AuthServiceProvider {
 
-  authChanged = new Subject<boolean>();
-  authenticated: boolean = false;
+  public authChanged = new Subject<boolean>();
+  public authenticated: boolean;
+  public user;
+  private token;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
 
   constructor(
-    private http: HttpClient) {
+    private http: HttpClient,
+    private storageService: StorageServiceProvider) {
+      
   }
 
   login(username, password) {
@@ -34,6 +33,24 @@ export class AuthServiceProvider {
         reject(err);
       })
     })
+  }
+
+  logout() {
+    this.storageService.clearStorage();
+    this.authenticated = false;
+    this.authChanged.next(this.authenticated);
+  }
+
+  async checkAuth() {
+    this.token = await this.storageService.getToken();
+    if(this.token !== '') {
+      this.authenticated = true;
+      this.user = await this.storageService.getUserData();
+      this.authChanged.next(this.authenticated);
+    } else {
+      this.authenticated = false;
+      this.authChanged.next(this.authenticated);
+    }
   }
 
 

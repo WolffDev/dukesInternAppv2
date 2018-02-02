@@ -22,7 +22,7 @@
   <ion-refresher (ionRefresh)="updateNews($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Træk ned for at opdatere"
+      pullingText="Træk ned for at opdatere nyheder"
       refreshingSpinner="circles"
       refreshingText="Opdaterer..."
       pullMin="500">
@@ -30,7 +30,7 @@
   </ion-refresher>
 
   <stats-view></stats-view>
-  <button ion-button (click)="getUserData()">Get user data</button>
+  <button ion-button (click)="checkToken()">Get user data</button>
   <ion-card
     *ngFor="let n of news" 
     class="news-card shadow-default">

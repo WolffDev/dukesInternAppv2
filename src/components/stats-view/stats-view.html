@@ -2,8 +2,9 @@
 
   <div class="attendess-container">
     <h3>Antal tilmeldinger:
-      <span *ngIf="attendees | async; else loadingText">
-        {{attendees | async}}
+      <span *ngIf="attendees; else loadingText">
+        {{attendees.antal}}
+        <!-- <button ion-button icon-left small (click)="getAttendes()"><ion-icon name="refresh">Opdater</ion-icon></button> -->
       </span>
       <ng-template #loadingText><span style="font-size:12px;">henter data...</span></ng-template>
     </h3>

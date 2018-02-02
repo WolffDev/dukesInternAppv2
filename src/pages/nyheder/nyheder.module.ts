@@ -15,5 +15,7 @@ import { NyhederPage } from './nyheder';
     AvatarModule,
     PipesModule,
   ],
+  providers: [
+  ]
 })
 export class NyhederPageModule {}

@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button end (click)="onClose()">Tilbage</button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+
+      <ion-card-title>
+        {{event}}
+      </ion-card-title>
+      <br>
+      <p><strong>Navn: </strong>{{ name }}</p>
+      <p><strong>Email: </strong>{{ email }}</p>
+      <hr>
+      <p><strong>Nickname: </strong>{{ nickname }}</p>
+      <p><strong>Username: </strong>{{ username }}</p>
+      <hr>
+      <p><strong>Plads: </strong>
+        <span class="act-highlight">{{ seat }}</span>
+      </p>
+      <p><strong>Netpass: </strong>
+        <span class="act-highlight">{{ netpass }}</span>
+      </p>
+      <br>
+      <button ion-button (click)="onClose()" block color="danger">Luk</button>
+      <br><br>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -13,6 +13,7 @@ import { NyhederServiceProvider } from '../providers/nyheder-service/nyheder-ser
 import { AvatarModule } from 'ng2-avatar';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+import { EventServiceProvider } from '../providers/event-service/event-service';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
     NyhederServiceProvider,
     AuthServiceProvider,
     StorageServiceProvider,
+    // EventServiceProvider,
   ]
 })
 export class AppModule {}

@@ -8,7 +8,7 @@ export class AuthServiceProvider {
 
   public authChanged = new Subject<boolean>();
   public authenticated: boolean;
-  public user;
+  private user;
   private token;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
 
@@ -35,6 +35,14 @@ export class AuthServiceProvider {
     })
   }
 
+  setToken(token) {
+    this.token = token;
+  }
+
+  setUser(user) {
+    this.user = user;
+  }
+
   logout() {
     this.storageService.clearStorage();
     this.authenticated = false;
@@ -44,13 +52,21 @@ export class AuthServiceProvider {
   async checkAuth() {
     this.token = await this.storageService.getToken();
     if(this.token !== '') {
-      this.authenticated = true;
       this.user = await this.storageService.getUserData();
+      this.authenticated = true;
       this.authChanged.next(this.authenticated);
     } else {
       this.authenticated = false;
       this.authChanged.next(this.authenticated);
     }
+  }
+
+  getToken() {
+    return this.token;
+  }
+
+  getUser() {
+    return this.user;
   }
 
 

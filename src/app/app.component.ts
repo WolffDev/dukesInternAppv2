@@ -48,4 +48,9 @@ export class MyApp {
     this.authService.logout();
     this.menuCtrl.close();
   }
+
+  goToTabs() {
+    this.nav.setRoot(TabsPage);
+    this.menuCtrl.close();
+  }
 }

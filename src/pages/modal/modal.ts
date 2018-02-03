@@ -16,6 +16,8 @@ export class ModalPage {
   dateFrom: string;
   dateTo: string;
   username: string;
+  lanIp: string;
+  discordName: string;
 
   constructor(public navParams: NavParams, public viewCtrl: ViewController) {
   }
@@ -30,6 +32,9 @@ export class ModalPage {
     this.dateFrom = this.navParams.get('date_from');
     this.dateTo = this.navParams.get('date_to');
     this.username = this.navParams.get('username');
+    this.lanIp = this.navParams.get('lan_ip');
+    this.discordName = this.navParams.get('discord_name');
+
     
   }
 

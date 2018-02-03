@@ -63,7 +63,7 @@ export class DeltagerePage {
 
     if(val && val.trim() !== '') {
       this.events = this.events.filter( event => {
-        return event.name.toLowerCase().includes(val.toLowerCase());
+        return event.name.toLowerCase().includes(val.toLowerCase()) || event.lan_ip.toLowerCase().includes(val.toLowerCase());
       })
     }
   }

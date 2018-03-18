@@ -17,10 +17,10 @@ interface SingleEvent {
 
 @IonicPage()
 @Component({
-  selector: 'page-deltagere',
-  templateUrl: 'deltagere.html',
+  selector: 'page-events',
+  templateUrl: 'events.html',
 })
-export class DeltagerePage {
+export class EventsPage {
 
   public events: SingleEvent[];
   public newEvents;
@@ -47,7 +47,7 @@ export class DeltagerePage {
 
   getEvents() {
     let loading = this.loadingCtrl.create({
-      content: 'Henter deltager liste'
+      content: 'Henter event liste'
     });
     loading.present();
     this.eventService.getEvents()

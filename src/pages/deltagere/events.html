@@ -6,7 +6,7 @@
         <ion-icon name="menu" color="light"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Deltagere</ion-title>
+    <ion-title>Events</ion-title>
   </ion-navbar>
 
   <ion-toolbar no-border-top>
@@ -19,7 +19,7 @@
 <ion-content padding>
   <ion-list>
     <button *ngFor="let event of events" ion-item (click)="onItemClick($event, event)">
-      {{event?.name}}
+      {{event?.event}}
     </button>
   </ion-list>
   

@@ -9,12 +9,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ServerStatsServiceProvider } from '../providers/server-stats-service/server-stats-service';
-import { NyhederServiceProvider } from '../providers/nyheder-service/nyheder-service';
 import { AvatarModule } from 'ng2-avatar';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
-import { EventServiceProvider } from '../providers/event-service/event-service';
 
 
 @NgModule({
@@ -48,11 +45,8 @@ import { EventServiceProvider } from '../providers/event-service/event-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServerStatsServiceProvider,
-    NyhederServiceProvider,
     AuthServiceProvider,
     StorageServiceProvider,
-    // EventServiceProvider,
   ]
 })
 export class AppModule {}

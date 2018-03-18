@@ -30,7 +30,7 @@ export class MyApp {
       this.statusBar.hide();
       
     
-  
+      console.log('HELLO FROM CONSTRUCT APP');
       this.authService.authChanged.subscribe( (isAuth: boolean) => {
         this.isAuth = isAuth;
         if(this.isAuth) {
@@ -45,9 +45,11 @@ export class MyApp {
     console.log('hello from app.com onInit');
     this.authService.checkAuth();
     if(this.authService.authenticated == false) {
-      this.rootPage = LoginPage;
+      // this.rootPage = LoginPage;
+      this.nav.setRoot(LoginPage)
     } else {
-      this.rootPage = TabsPage;
+      this.nav.setRoot(TabsPage)
+      // this.rootPage = TabsPage;
     }
   }
 

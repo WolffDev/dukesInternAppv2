@@ -47,7 +47,7 @@ export class NyhederPage {
 
   
   checkToken() {
-    let token = this.authService.getToken();
+    let token = this.authService.authenticated;
     this.alert(token);
   }
 

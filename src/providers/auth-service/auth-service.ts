@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/Subject';
 export class AuthServiceProvider {
 
   public authChanged = new Subject<boolean>();
-  public authenticated: boolean;
+  public authenticated: boolean = false;
   private user;
   private token;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';

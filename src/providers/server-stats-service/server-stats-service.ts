@@ -12,9 +12,6 @@ export class ServerStatsServiceProvider {
   }
 
   getAttendeesNumber() {
-    let headers = new HttpHeaders();
-    headers = headers.append(`Authorization`,`${this.token}`);
-    return this.http.get(this.url, {headers}).toPromise();
   }
 
 

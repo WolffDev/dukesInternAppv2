@@ -1,10 +1,11 @@
+import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
 import { TabsPage } from './../pages/tabs/tabs';
 import { LoginPage } from './../pages/login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,6 +39,10 @@ import { EventServiceProvider } from '../providers/event-service/event-service';
     LoginPage,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptorProvider, 
+      multi: true},
     NativeStorage,
     StatusBar,
     SplashScreen,

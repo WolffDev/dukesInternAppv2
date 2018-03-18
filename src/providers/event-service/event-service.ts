@@ -2,12 +2,22 @@ import { AuthServiceProvider } from './../auth-service/auth-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+interface SingleEvent {
+  event: string,
+  id: number,
+  time_from: string,
+  time_to: string
+}
+
+interface EventsResponse {
+  newToken: string,
+  events: SingleEvent[]
+}
+
 @Injectable()
 export class EventServiceProvider {
 
-  private url = 'http://api.dukesdenmark.dk/events';
-  token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZHVrZXNkZW5tYXJrLmRrIiwiaWF0IjoxNTE3MzY5ODg5LCJuYmYiOjE1MTczNjk4ODksImV4cCI6MTUxNzk3NDY4OSwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMzkiLCJyb2xlcyI6WyJzdWJzY3JpYmVyIl19fX0.OQmXXSH9-feH2jiNwJ2rV8N3gDPXnpPbYqyZm18ao1k';
-
+  private url = 'http://dukesdenmark.dk:50080/api/v1/events';
 
   constructor(public http: HttpClient, private authService: AuthServiceProvider) {
 
@@ -15,9 +25,10 @@ export class EventServiceProvider {
 
   public getEvents() {
     // let token = this.authService.getToken();
-    let headers = new HttpHeaders();
-    headers = headers.append(`Authorization`,this.token);
-    return this.http.get(this.url, {headers}).toPromise();
+    // let headers = new HttpHeaders();
+    // headers = headers.append(`Authorization`, `Bearer ${token}`);
+    // return this.http.get<EventsResponse>(this.url, {headers}).toPromise();
+    return this.http.get<EventsResponse>(this.url).toPromise();
   }
 
 }

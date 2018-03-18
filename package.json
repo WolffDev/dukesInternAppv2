@@ -10,7 +10,7 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "serve:android": "ionic cordova run android --device --livereload",
+    "serve:android": "ionic cordova run android --device --livereload -l -c -s --debug",
     "serve:ios": "ionic cordova run ios --device --livereload"
   },
   "dependencies": {

@@ -3,6 +3,18 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { EventServiceProvider } from '../../providers/event-service/event-service';
 
+interface SingleEvent {
+  event: string,
+  id: number,
+  time_from: string,
+  time_to: string
+}
+
+// interface eventsResponse {
+//   newToken: string,
+//   events: singleEvent[]
+// }
+
 @IonicPage()
 @Component({
   selector: 'page-deltagere',
@@ -10,10 +22,18 @@ import { EventServiceProvider } from '../../providers/event-service/event-servic
 })
 export class DeltagerePage {
 
-  public events;
+  public events: SingleEvent[];
   public newEvents;
 
-  constructor(public navCtrl: NavController, public eventService: EventServiceProvider, public modalCtrl: ModalController, public viewCtrl: ViewController, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+  constructor(
+    public navCtrl: NavController, 
+    public eventService: EventServiceProvider, 
+    public modalCtrl: ModalController, 
+    public viewCtrl: ViewController, 
+    private loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController
+  ) {
+
   }
 
   ngOnInit() {
@@ -31,9 +51,9 @@ export class DeltagerePage {
     });
     loading.present();
     this.eventService.getEvents()
-      .then(res => {
+      .then(eventsResponse => {
         loading.dismiss();
-        this.events = res;
+        this.events = eventsResponse.events;
         this.newEvents = this.events.slice();
       })
       .catch( err => {
@@ -41,7 +61,7 @@ export class DeltagerePage {
         loading.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Fejl ved indlæsning',
-          message: err.error.message,
+          message: err.message,
           buttons: ['Træls']
         });
         alert.present();
@@ -58,12 +78,12 @@ export class DeltagerePage {
 
   filterItems(event: any) {
     let val = event.target.value;
-    if(val === '') this.getEvents();
+    if(val === '') this.getNewEvents();
     console.log(this.events);
 
     if(val && val.trim() !== '') {
       this.events = this.events.filter( event => {
-        return event.name.toLowerCase().includes(val.toLowerCase()) || event.lan_ip.toLowerCase().includes(val.toLowerCase());
+        return event.event.toLowerCase().includes(val.toLowerCase()) || event.time_from.toLowerCase().includes(val.toLowerCase());
       })
     }
   }

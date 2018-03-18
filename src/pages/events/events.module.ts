@@ -1,4 +1,3 @@
-import { ModalPageModule } from './../modal/modal.module';
 import { EventServiceProvider } from './../../providers/event-service/event-service';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
@@ -10,7 +9,6 @@ import { EventsPage } from './events';
   ],
   imports: [
     IonicPageModule.forChild(EventsPage),
-    ModalPageModule,
   ],
   providers: [
     EventServiceProvider

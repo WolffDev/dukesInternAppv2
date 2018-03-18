@@ -1,7 +1,6 @@
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
-import { ServerStatsServiceProvider } from './../../providers/server-stats-service/server-stats-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';

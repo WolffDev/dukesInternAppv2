@@ -1,4 +1,3 @@
-import { ModalPage } from './../modal/modal';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { EventServiceProvider } from '../../providers/event-service/event-service';
@@ -82,6 +81,7 @@ export class EventsPage {
   onItemClick($event, user) {
     let modal = this.modalCtrl.create('ModalPage', user);
     modal.present();
+    // this.navCtrl.push('EventDetailPage')
   }
 
 }

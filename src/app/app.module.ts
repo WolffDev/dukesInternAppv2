@@ -42,7 +42,8 @@ import { EventServiceProvider } from '../providers/event-service/event-service';
     {
       provide: HTTP_INTERCEPTORS, 
       useClass: AuthInterceptorProvider, 
-      multi: true},
+      multi: true
+    },
     NativeStorage,
     StatusBar,
     SplashScreen,

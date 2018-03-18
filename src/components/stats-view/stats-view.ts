@@ -1,4 +1,3 @@
-import { ServerStatsServiceProvider } from './../../providers/server-stats-service/server-stats-service';
 import { Component } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -12,7 +11,7 @@ export class StatsViewComponent {
 
   attendees;
 
-  constructor(private serverStatsSerive: ServerStatsServiceProvider) {
+  constructor() {
     this.getAttendes();
     
     
@@ -31,9 +30,9 @@ export class StatsViewComponent {
 
 
   getAttendes() {
-    this.serverStatsSerive.getAttendeesNumber()
-      .then( res => this.attendees = res)
-      .catch( err => console.log(err))
+    // this.serverStatsSerive.getAttendeesNumber()
+    //   .then( res => this.attendees = res)
+    //   .catch( err => console.log(err))
   }
 
 

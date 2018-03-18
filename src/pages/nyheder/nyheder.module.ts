@@ -1,3 +1,4 @@
+import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
 import { PipesModule } from './../../pipes/pipes.module';
 import { StatsViewModule } from './../../components/stats-view/stats-view.module';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,7 @@ import { NyhederPage } from './nyheder';
     PipesModule,
   ],
   providers: [
+    NyhederServiceProvider
   ]
 })
 export class NyhederPageModule {}

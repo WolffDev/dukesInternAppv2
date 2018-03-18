@@ -2,13 +2,8 @@ import { ModalPage } from './../modal/modal';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { EventServiceProvider } from '../../providers/event-service/event-service';
+import { SingleEvent } from '../../interface/SingleEvent';
 
-interface SingleEvent {
-  event: string,
-  id: number,
-  time_from: string,
-  time_to: string
-}
 
 // interface eventsResponse {
 //   newToken: string,

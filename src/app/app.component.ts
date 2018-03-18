@@ -3,7 +3,7 @@ import { TabsPage } from './../pages/tabs/tabs';
 import { AuthServiceProvider } from './../providers/auth-service/auth-service';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, MenuController } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
+import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
@@ -18,9 +18,9 @@ export class MyApp {
   @ViewChild('nav') nav: NavController;
 
 
-  constructor(statusBar: StatusBar, splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider, public menuCtrl: MenuController) {
+  constructor(private statusBar: StatusBar, splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider, public menuCtrl: MenuController) {
     platform.ready().then(() => {
-      statusBar.hide();
+      // this.statusBar.hide();
       splashScreen.hide();
       
     });

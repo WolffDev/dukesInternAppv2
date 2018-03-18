@@ -32,7 +32,7 @@ export class LoginPage {
 
     this.authService.login(form.value.username, form.value.password)
       .then(res => {
-        // console.log('fre login',res);
+        console.log('fra login',res);
         this.authService.setToken(res['token']);
         this.authService.setUser(res['user']);
         this.storageService.setToken(res['token']);

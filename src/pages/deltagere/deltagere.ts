@@ -40,8 +40,8 @@ export class DeltagerePage {
         console.log(err)
         loading.dismiss();
         const alert = this.alertCtrl.create({
-          title: 'Kan ikke hente listen nu\nPrøv evt igen.',
-          message: err,
+          title: 'Fejl ved indlæsning',
+          message: err.error.message,
           buttons: ['Træls']
         });
         alert.present();

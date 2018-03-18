@@ -1,7 +1,8 @@
+import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, AlertController } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 // @IonicPage()
@@ -11,15 +12,46 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage {
 
+private fingerprintOptions: FingerprintOptions;
+
+  public fingerprint = false;
+
   constructor(
     private authService: AuthServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private storageService: StorageServiceProvider) {
-
+    private storageService: StorageServiceProvider,
+    private faio: FingerprintAIO
+  ) {
+    this.fingerprintOptions = {
+      clientId: 'DukesDenmarkInternApp',
+      clientSecret: 'password123',
+      disableBackup: true,
+      localizedFallbackTitle: 'Cancel',
+      localizedReason: 'Login med fingeraftryk'
+    }
   }
 
   ionViewDidLoad() {
+    this.checkToken();
+  }
+
+  checkFingerprint() {
+    const alert = this.alertCtrl.create({
+      message: `${this.fingerprint}`
+    });
+    alert.present();
+  }
+
+  async showFingerprintDialog() {
+    const available = await this.faio.isAvailable();
+    if(available === 'OK') {
+      this.faio.show(this.fingerprintOptions)
+        .then(result => {
+          console.log(JSON.stringify(result));
+        })
+        .catch(err => console.log(err))
+    }
   }
 
   login(form: NgForm) {
@@ -48,6 +80,17 @@ export class LoginPage {
         alert.present();
       })
   }
+
+  async checkToken() {
+    const token = await this.storageService.getToken();
+    if(token) {
+      console.log('TOKEN IS NOT EMPTY!!!');
+      this.fingerprint = true;
+    } else {
+      console.log('TOKEN IS EMPTY!!!');
+    }
+  }
+  
 
 
 

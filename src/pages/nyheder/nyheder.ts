@@ -29,16 +29,7 @@ export class NyhederPage {
   }
 
   ionViewDidLoad(){
-    console.log('ionviewdid load NYHEDER');
-    // this.news = [
-    //   {'title': 'Test title 1', 'body':'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, deserunt!', 'author':'Martin Sigvartsen Sørensen Jacobsen'},
-    //   {'title': 'Test title 2', 'body':'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, deserunt!', 'author':'Daniel Sigvartsen'},
-    //   {'title': 'Test title 3', 'body':'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, deserunt!', 'author':'Dennis Duggen'},
-    //   {'title': 'Test title 4', 'body':'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, deserunt!', 'author':'David Wolff'},
-    //   {'title': 'Test title 5', 'body':'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, deserunt!', 'author':'Dennis Jørgensen'},
-    // ]
     this.getNews();
-
   }
 
   getNews() {
@@ -65,7 +56,6 @@ export class NyhederPage {
   }
   
   sendConsoleMsg() {
-    console.log("Test message");
   }
 
   testDetails() {

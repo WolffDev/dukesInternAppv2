@@ -23,7 +23,6 @@ export class NyhedDetailPage {
 
   ionViewDidLoad() {
     this.data = this.navParams.get('data');
-    console.log(this.data);
   }
 
 }

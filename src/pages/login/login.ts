@@ -1,7 +1,7 @@
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, LoadingController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 // @IonicPage()
@@ -12,7 +12,6 @@ import { NgForm } from '@angular/forms';
 export class LoginPage {
 
   constructor(
-    private navCtrl: NavController, 
     private authService: AuthServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
@@ -21,7 +20,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   login(form: NgForm) {
@@ -32,7 +30,6 @@ export class LoginPage {
     // TODO: change logic, so it all happens in auth-service and NOT login.ts
     this.authService.login(form.value.username, form.value.password)
       .then(res => {
-        console.log('fra login',res);
         this.authService.setToken(res['token']);
         this.authService.setUser(res['user']);
         this.storageService.setToken(res['token']);

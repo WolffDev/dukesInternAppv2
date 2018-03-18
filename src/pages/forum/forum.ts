@@ -12,7 +12,6 @@ export class ForumPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ForumPage');
   }
 
 }

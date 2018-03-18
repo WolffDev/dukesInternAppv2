@@ -30,7 +30,6 @@ export class MyApp {
       this.statusBar.hide();
       
     
-      console.log('HELLO FROM CONSTRUCT APP');
       this.authService.authChanged.subscribe( (isAuth: boolean) => {
         this.isAuth = isAuth;
         if(this.isAuth) {
@@ -42,7 +41,6 @@ export class MyApp {
     });
   }
   ngOnInit() {
-    console.log('hello from app.com onInit');
     this.authService.checkAuth();
     if(this.authService.authenticated == false) {
       // this.rootPage = LoginPage;

@@ -19,7 +19,6 @@ export class StatsViewComponent {
   }
   
   ionViewDidLoad(){
-    console.log('stats view is LAOADING!');
   }
   
   ngOnInit() {

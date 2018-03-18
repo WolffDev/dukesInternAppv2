@@ -38,8 +38,6 @@ export class EventsPage {
 
   ngOnInit() {
     this.getEvents();
-    console.log(this.events);
-    console.log('events from init');
   }
 
   ionViewDidLoad() {
@@ -57,7 +55,6 @@ export class EventsPage {
         this.newEvents = this.events.slice();
       })
       .catch( err => {
-        console.log(err)
         loading.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Fejl ved indlæsning',
@@ -79,7 +76,6 @@ export class EventsPage {
   filterItems(event: any) {
     let val = event.target.value;
     if(val === '') this.getNewEvents();
-    console.log(this.events);
 
     if(val && val.trim() !== '') {
       this.events = this.events.filter( event => {
@@ -89,7 +85,6 @@ export class EventsPage {
   }
 
   onItemClick($event, user) {
-    console.log(user);
     let modal = this.modalCtrl.create('ModalPage', user);
     modal.present();
   }

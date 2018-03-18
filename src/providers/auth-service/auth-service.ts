@@ -36,21 +36,21 @@ export class AuthServiceProvider {
     })
   }
 
-  setToken(token) {
+  public setToken(token) {
     this.token = token;
   }
 
-  setUser(user) {
+  public setUser(user) {
     this.user = user;
   }
 
-  logout() {
+  public logout() {
     this.storageService.clearStorage();
     this.authenticated = false;
     this.authChanged.next(this.authenticated);
   }
 
-  async checkAuth() {
+  public async checkAuth() {
     this.token = await this.storageService.getToken();
     if(this.token !== '') {
       this.user = await this.storageService.getUserData();
@@ -62,11 +62,11 @@ export class AuthServiceProvider {
     }
   }
 
-  getToken() {
+  public getToken() {
     return this.token;
   }
 
-  getUser() {
+  public getUser() {
     return this.user;
   }
 

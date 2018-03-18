@@ -18,21 +18,28 @@ export class MyApp {
   @ViewChild('nav') nav: NavController;
 
 
-  constructor(private statusBar: StatusBar, private splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider, public menuCtrl: MenuController) {
-    platform.ready().then(() => {
-      // this.splashScreen.hide();
-      // this.statusBar.hide();
+  constructor(
+    private statusBar: StatusBar, 
+    private splashScreen: SplashScreen, 
+    private platform: Platform, 
+    public authService: AuthServiceProvider, 
+    public menuCtrl: MenuController
+  ) {
+    this.platform.ready().then(() => {
+      this.splashScreen.hide();
+      this.statusBar.hide();
       
-    });
+    
   
-    this.authService.authChanged.subscribe( (isAuth: boolean) => {
-      this.isAuth = isAuth;
-      if(this.isAuth) {
-        this.nav.setRoot(TabsPage);
-      } else {
-        this.nav.setRoot(LoginPage);
-      }
-    })
+      this.authService.authChanged.subscribe( (isAuth: boolean) => {
+        this.isAuth = isAuth;
+        if(this.isAuth) {
+          this.nav.setRoot(TabsPage);
+        } else {
+          this.nav.setRoot(LoginPage);
+        }
+      })
+    });
   }
   ngOnInit() {
     console.log('hello from app.com onInit');

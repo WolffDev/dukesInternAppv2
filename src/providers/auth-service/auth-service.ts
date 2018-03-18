@@ -14,8 +14,9 @@ export class AuthServiceProvider {
 
   constructor(
     private http: HttpClient,
-    private storageService: StorageServiceProvider) {
-      
+    private storageService: StorageServiceProvider
+  ) {
+    
   }
 
   login(username, password) {

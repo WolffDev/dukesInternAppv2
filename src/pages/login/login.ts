@@ -29,7 +29,7 @@ export class LoginPage {
       content: 'Logger ind...',
     });
     loading.present();
-
+    // TODO: change logic, so it all happens in auth-service and NOT login.ts
     this.authService.login(form.value.username, form.value.password)
       .then(res => {
         console.log('fra login',res);
@@ -41,7 +41,6 @@ export class LoginPage {
         loading.dismiss();
       })
       .catch(err => {
-        console.log(err);
         loading.dismiss();
 
         const alert = this.alertCtrl.create({

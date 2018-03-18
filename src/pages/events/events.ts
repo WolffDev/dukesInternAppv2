@@ -18,7 +18,7 @@ import { SingleEvent } from '../../interface/SingleEvent';
 export class EventsPage {
 
   public events: SingleEvent[];
-  public newEvents;
+  public newEvents: SingleEvent[];
 
   constructor(
     public navCtrl: NavController, 

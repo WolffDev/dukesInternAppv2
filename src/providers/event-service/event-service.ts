@@ -1,4 +1,3 @@
-import { AuthServiceProvider } from './../auth-service/auth-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EventsResponse } from '../../interface/EventsResponse';
@@ -9,8 +8,7 @@ export class EventServiceProvider {
   private url = 'http://dukesdenmark.dk:50080/api/v1/events';
 
   constructor(
-    public http: HttpClient, 
-    private authService: AuthServiceProvider
+    private http: HttpClient, 
   ) {
     
   }

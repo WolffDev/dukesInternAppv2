@@ -18,10 +18,10 @@ export class MyApp {
   @ViewChild('nav') nav: NavController;
 
 
-  constructor(private statusBar: StatusBar, splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider, public menuCtrl: MenuController) {
+  constructor(private statusBar: StatusBar, private splashScreen: SplashScreen, platform: Platform, public authService: AuthServiceProvider, public menuCtrl: MenuController) {
     platform.ready().then(() => {
+      // this.splashScreen.hide();
       // this.statusBar.hide();
-      splashScreen.hide();
       
     });
   

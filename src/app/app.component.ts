@@ -38,18 +38,27 @@ export class MyApp {
           this.nav.setRoot(LoginPage);
         }
       })
+
+      this.authService.checkAuth();
+      if(this.authService.authenticated == false) {
+        // this.rootPage = LoginPage;
+        this.nav.setRoot(LoginPage)
+      } else {
+        this.nav.setRoot(TabsPage)
+        // this.rootPage = TabsPage;
+      }
     });
   }
-  ngOnInit() {
-    this.authService.checkAuth();
-    if(this.authService.authenticated == false) {
-      // this.rootPage = LoginPage;
-      this.nav.setRoot(LoginPage)
-    } else {
-      this.nav.setRoot(TabsPage)
-      // this.rootPage = TabsPage;
-    }
-  }
+  // ngOnInit() {
+  //   this.authService.checkAuth();
+  //   if(this.authService.authenticated == false) {
+  //     // this.rootPage = LoginPage;
+  //     this.nav.setRoot(LoginPage)
+  //   } else {
+  //     this.nav.setRoot(TabsPage)
+  //     // this.rootPage = TabsPage;
+  //   }
+  // }
 
   logout() {
     this.authService.logout();

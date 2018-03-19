@@ -12,6 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AvatarModule } from 'ng2-avatar';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio'
+import { TouchID } from '@ionic-native/touch-id'
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
       useClass: AuthInterceptorProvider, 
       multi: true
     },
+    FingerprintAIO,
+    TouchID,
     NativeStorage,
     StatusBar,
     SplashScreen,

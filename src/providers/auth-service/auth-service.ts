@@ -44,15 +44,17 @@ export class AuthServiceProvider {
     this.user = user;
   }
 
-  public logout() {
-    this.storageService.clearStorage();
+  public async logout() {
+    await this.storageService.clearStorage();
+    await this.storageService.setLoginStatus('false');
     this.authenticated = false;
     this.authChanged.next(this.authenticated);
   }
 
   public async checkAuth() {
+    const loginStatus = await this.storageService.getLoginStatus();
     this.token = await this.storageService.getToken();
-    if(this.token !== '') {
+    if(this.token !== '' && loginStatus === 'true') {
       this.user = await this.storageService.getUserData();
       this.authenticated = true;
       this.authChanged.next(this.authenticated);

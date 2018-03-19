@@ -19,6 +19,18 @@ export class StorageServiceProvider {
       .catch( err => err);
   }
 
+  async setLoginStatus(value) {
+    return await this.storage.setItem('loginStatus', value)
+      .then( res => res)
+      .catch( err => err)
+  }
+
+  async getLoginStatus() {
+    return await this.storage.getItem('loginStatus')
+      .then( res => res)
+      .catch( err => err)
+  }
+
   async setUserData(userData) {
     return await this.storage.setItem('user', userData)
       .then(res => res)

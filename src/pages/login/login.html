@@ -19,4 +19,5 @@
     </ion-list>
     <button ion-button block type="submit" [disabled]="!f.valid" color="actColor">Login</button>
   </form>
+  <button *ngIf="fingerprint" ion-button (click)="showFingerprintDialog()">Login med finger</button>
 </ion-content>

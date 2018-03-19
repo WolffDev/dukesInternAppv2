@@ -44,9 +44,9 @@ export class AuthServiceProvider {
     this.user = user;
   }
 
-  public logout() {
-    // this.storageService.clearStorage();
-    this.storageService.setLoginStatus('false');
+  public async logout() {
+    await this.storageService.clearStorage();
+    await this.storageService.setLoginStatus('false');
     this.authenticated = false;
     this.authChanged.next(this.authenticated);
   }

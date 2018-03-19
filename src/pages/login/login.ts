@@ -51,7 +51,10 @@ private fingerprintOptions: FingerprintOptions;
       const available = await this.touchId.isAvailable();
       if(available === 'touch') {
         this.touchId.verifyFingerprint('Scan dit fingeraftryk...')
-          .then(result => this.authService.authChanged.next(true))
+          .then(result => {
+            this.storageService.setLoginStatus('true');
+            this.authService.authChanged.next(true);
+          })
           .catch(err => console.log(err))
       }
     } else {
@@ -59,6 +62,7 @@ private fingerprintOptions: FingerprintOptions;
       if(available === 'OK') {
         this.faio.show(this.fingerprintOptions)
           .then(result => {
+            this.storageService.setLoginStatus('true');
             this.authService.authChanged.next(true);
           })
           .catch(err => console.log(err))
@@ -99,7 +103,8 @@ private fingerprintOptions: FingerprintOptions;
 
   async checkToken() {
     const token = await this.storageService.getToken();
-    if(token) {
+    if(token !== '') {
+      console.log(token);
       console.log('TOKEN IS NOT EMPTY!!!');
       this.fingerprint = true;
     } else {

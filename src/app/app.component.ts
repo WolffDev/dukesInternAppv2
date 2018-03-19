@@ -5,7 +5,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { timer } from 'rxjs/observable/timer'
+// import { timer } from 'rxjs/observable/timer'
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +13,7 @@ import { timer } from 'rxjs/observable/timer'
 export class MyApp {
   rootPage: any;
   isAuth: boolean = false;
-  showSplash = true;
+  showSplash = false;
 
 
   @ViewChild('nav') nav: NavController;
@@ -29,7 +29,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
       this.statusBar.hide();
-      timer(1500).subscribe(() => this.showSplash = false)
+      // timer(1500).subscribe(() => this.showSplash = false)
       
     
       this.authService.authChanged.subscribe( (isAuth: boolean) => {

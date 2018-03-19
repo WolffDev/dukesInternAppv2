@@ -1,20 +1,20 @@
+import { LoginResponse } from './../../models/login/loginResponse.interface';
 import { TouchID } from '@ionic-native/touch-id';
 import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
-import { LoadingController, AlertController, Platform } from 'ionic-angular';
+import { IonicPage, LoadingController, AlertController, Platform, NavController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
-// @IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
 
-private fingerprintOptions: FingerprintOptions;
-
+  private fingerprintOptions: FingerprintOptions;
   public fingerprint = false;
 
   constructor(
@@ -24,7 +24,8 @@ private fingerprintOptions: FingerprintOptions;
     private storageService: StorageServiceProvider,
     private faio: FingerprintAIO,
     private plt: Platform,
-    private touchId: TouchID
+    private touchId: TouchID,
+    private navCtrl: NavController
   ) {
     this.fingerprintOptions = {
       clientId: 'DukesDenmarkInternApp',
@@ -33,17 +34,21 @@ private fingerprintOptions: FingerprintOptions;
       localizedFallbackTitle: 'Cancel',
       localizedReason: 'Login med fingeraftryk'
     }
+    this.checkLoginStatus();
   }
 
   ionViewDidLoad() {
     this.checkToken();
   }
 
-  checkFingerprint() {
-    const alert = this.alertCtrl.create({
-      message: `${this.fingerprint}`
-    });
-    alert.present();
+  async checkLoginStatus() {
+    await this.storageService.getLoginStatus()
+      .then(() => {
+        this.alreadyAuth();
+        this.navCtrl.setRoot('TabsPage');
+      })
+      .catch(err => console.log('Something went wrong, which it should not',err));
+
   }
 
   async showFingerprintDialog() {
@@ -52,8 +57,8 @@ private fingerprintOptions: FingerprintOptions;
       if(available === 'touch') {
         this.touchId.verifyFingerprint('Scan dit fingeraftryk...')
           .then(result => {
-            this.storageService.setLoginStatus('true');
-            this.authService.authChanged.next(true);
+            this.alreadyAuth();
+            this.navCtrl.setRoot('TabsPage');
           })
           .catch(err => console.log(err))
       }
@@ -62,43 +67,40 @@ private fingerprintOptions: FingerprintOptions;
       if(available === 'OK') {
         this.faio.show(this.fingerprintOptions)
           .then(result => {
-            this.storageService.setLoginStatus('true');
-            this.authService.authChanged.next(true);
+            this.alreadyAuth();
+            this.navCtrl.setRoot('TabsPage');
           })
           .catch(err => console.log(err))
       }
     }
-
-
-
   }
 
-  login(form: NgForm) {
+  async login(form: NgForm) {
     const loading = this.loadingCtrl.create({
       content: 'Logger ind...',
     });
     loading.present();
-    // TODO: change logic, so it all happens in auth-service and NOT login.ts
-    this.authService.login(form.value.username, form.value.password)
-      .then(res => {
-        this.authService.setToken(res['token']);
-        this.authService.setUser(res['user']);
-        this.storageService.setToken(res['token']);
-        this.storageService.setUserData(res['user']);
+    await this.authService.login(form.value.username, form.value.password)
+      .then( LoginResponse => {
+        this.authService.setToken(LoginResponse.token);
+        this.authService.setUser(LoginResponse.user);
+        this.storageService.setToken(LoginResponse.token);
+        this.storageService.setUserData(LoginResponse.user);
         this.storageService.setLoginStatus('true');
-        this.authService.authChanged.next(true);
-        loading.dismiss();
-      })
-      .catch(err => {
+        this.navCtrl.setRoot('TabsPage');
         loading.dismiss();
 
+      })
+      .catch(e => {
+        loading.dismiss();
+        console.log(e.error);
         const alert = this.alertCtrl.create({
           title: 'Kan ikke logge ind',
-          message: err.error.message,
+          message: e.error.message,
           buttons: ['Træls']
         });
         alert.present();
-      })
+      })    
   }
 
   async checkToken() {
@@ -111,8 +113,11 @@ private fingerprintOptions: FingerprintOptions;
       console.log('TOKEN IS EMPTY!!!');
     }
   }
-  
 
-
+  async alreadyAuth() {
+    this.authService.setToken(await this.storageService.getToken());
+    this.authService.setUser(await this.storageService.getUserData());
+    await this.storageService.setLoginStatus('true');
+  }
 
 }

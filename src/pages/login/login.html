@@ -27,8 +27,8 @@
       <button ion-button block type="submit" [disabled]="!f.valid" color="actColor">Login</button>
     </form>
   </div>
-  <div id="fingerprint-container">
-    <button *ngIf="fingerprint" ion-button (click)="showFingerprintDialog()" icon-only large color="fingerPrint" round>
+  <div id="fingerprint-container" *ngIf="fingerprint">
+    <button ion-button (click)="showFingerprintDialog()" icon-only large color="fingerPrint" round>
       <ion-icon name="finger-print"></ion-icon>
     </button>
   </div>

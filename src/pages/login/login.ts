@@ -48,7 +48,7 @@ private fingerprintOptions: FingerprintOptions;
     if(available === 'OK') {
       this.faio.show(this.fingerprintOptions)
         .then(result => {
-          console.log(JSON.stringify(result));
+          this.authService.authChanged.next(true);
         })
         .catch(err => console.log(err))
     }
@@ -66,6 +66,7 @@ private fingerprintOptions: FingerprintOptions;
         this.authService.setUser(res['user']);
         this.storageService.setToken(res['token']);
         this.storageService.setUserData(res['user']);
+        this.storageService.setLoginStatus('true');
         this.authService.authChanged.next(true);
         loading.dismiss();
       })

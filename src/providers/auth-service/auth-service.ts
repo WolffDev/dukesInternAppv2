@@ -46,15 +46,15 @@ export class AuthServiceProvider {
 
   public logout() {
     // this.storageService.clearStorage();
+    this.storageService.setLoginStatus('false');
     this.authenticated = false;
     this.authChanged.next(this.authenticated);
   }
 
   public async checkAuth() {
-    // TODO: create login status in storage <-- IMPORTANT
-    // TODO: also check login status
+    const loginStatus = await this.storageService.getLoginStatus();
     this.token = await this.storageService.getToken();
-    if(this.token !== '') {
+    if(this.token !== '' && loginStatus === 'true') {
       this.user = await this.storageService.getUserData();
       this.authenticated = true;
       this.authChanged.next(this.authenticated);

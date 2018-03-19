@@ -1,3 +1,30 @@
 page-login {
-
+	// .list-md .item-input,
+	.list-ios > .item-block:first-child,
+	.list-md .item-input:last-child,
+	// .list-md .item-block .item-inner,
+	// .list-ios .item-block .item-inner,
+	// .list-ios .item-input,
+	.list-ios .item-input:last-child {
+		border: none;
+	}
+	.item-ios,
+	.item-md {
+		padding-left: 0;
+	}
+	.list-md .item-input:last-child,
+	.list-ios .item-input:last-child {
+		display: none;
+	}
+	#login-container {
+		margin: 20px auto;
+		width: 90%;
+		padding: 0 30px 30px;
+		background-color: rgba(8, 8, 8, 0.4);
+		border-radius: 5px;
+	}
+	#fingerprint-container {
+		display: flex;
+		justify-content: center;
+	}
 }

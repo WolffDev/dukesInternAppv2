@@ -1,23 +1,32 @@
-<ion-content padding>
-  <form #f="ngForm" (ngSubmit)="login(f)">
-    <ion-list padding>
-      <ion-item>
-        <ion-label floating>Brugernavn</ion-label>
-        <ion-input
+<ion-content>
+  <div id="login-container">
+    <form #f="ngForm" (ngSubmit)="login(f)">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Brugernavn</ion-label>
+          <ion-input
+            ngModel
+            required
+            name="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input
           ngModel
           required
-          name="username"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input
-        ngModel
-        required
-        name="password"
-        type="password"></ion-input>
-      </ion-item>
-    </ion-list>
-    <button ion-button block type="submit" [disabled]="!f.valid" color="actColor">Login</button>
-  </form>
-  <button *ngIf="fingerprint" ion-button (click)="showFingerprintDialog()">Login med finger</button>
+          name="password"
+          type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="hidden"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button block type="submit" [disabled]="!f.valid" color="actColor">Login</button>
+    </form>
+  </div>
+  <div id="fingerprint-container">
+    <button *ngIf="fingerprint" ion-button (click)="showFingerprintDialog()" icon-only large color="fingerPrint" round>
+      <ion-icon name="finger-print"></ion-icon>
+    </button>
+  </div>
 </ion-content>

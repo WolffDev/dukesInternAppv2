@@ -1,8 +1,9 @@
+import { TouchID } from '@ionic-native/touch-id';
 import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
-import { LoadingController, AlertController } from 'ionic-angular';
+import { LoadingController, AlertController, Platform } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 // @IonicPage()
@@ -21,7 +22,9 @@ private fingerprintOptions: FingerprintOptions;
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private storageService: StorageServiceProvider,
-    private faio: FingerprintAIO
+    private faio: FingerprintAIO,
+    private plt: Platform,
+    private touchId: TouchID
   ) {
     this.fingerprintOptions = {
       clientId: 'DukesDenmarkInternApp',
@@ -44,14 +47,26 @@ private fingerprintOptions: FingerprintOptions;
   }
 
   async showFingerprintDialog() {
-    const available = await this.faio.isAvailable();
-    if(available === 'OK') {
-      this.faio.show(this.fingerprintOptions)
-        .then(result => {
-          this.authService.authChanged.next(true);
-        })
-        .catch(err => console.log(err))
+    if(this.plt.is('ios')) {
+      const available = await this.touchId.isAvailable();
+      if(available === 'touch') {
+        this.touchId.verifyFingerprint('Scan dit fingeraftryk...')
+          .then(result => this.authService.authChanged.next(true))
+          .catch(err => console.log(err))
+      }
+    } else {
+      const available = await this.faio.isAvailable();
+      if(available === 'OK') {
+        this.faio.show(this.fingerprintOptions)
+          .then(result => {
+            this.authService.authChanged.next(true);
+          })
+          .catch(err => console.log(err))
+      }
     }
+
+
+
   }
 
   login(form: NgForm) {

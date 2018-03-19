@@ -68,6 +68,8 @@
         "FACEID_USAGE_DESCRIPTION": " "
       }
     },
-    "platforms": []
+    "platforms": [
+      "ios"
+    ]
   }
 }

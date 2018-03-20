@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class AuthServiceProvider {
 
   // public authChanged = new Subject<boolean>();
-  public authenticated: boolean = false;
+  private fingerprint: boolean = false;
   private user;
   private token: string;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
@@ -42,6 +42,12 @@ export class AuthServiceProvider {
     await this.storageService.setLoginStatus('false');
     console.log('#### calling logout ####');
   }
+  
+  public async clearAllData() {
+    await this.storageService.setLoginStatus('false');
+    await this.storageService.clearStorage();
+    this.setFingerprint(false);
+  }
 
 
   public getToken() {
@@ -50,6 +56,14 @@ export class AuthServiceProvider {
 
   public getUser() {
     return this.user;
+  }
+
+  public setFingerprint(value: boolean) {
+    this.fingerprint = value;
+  }
+
+  public getFingerprint(): boolean {
+    return this.fingerprint;
   }
 
 

@@ -54,8 +54,6 @@ export class NyhederPage {
     alert.present();
   }
   
-  sendConsoleMsg() {
-  }
 
   testDetails() {
     this.navCtrl.push('NyhedDetailPage')
@@ -63,7 +61,7 @@ export class NyhederPage {
 
   updateNews(refresher) {
     setTimeout(() => {
-      console.log(event);
+      console.log(refresher);
       refresher.complete();
     }, 3000)
   }

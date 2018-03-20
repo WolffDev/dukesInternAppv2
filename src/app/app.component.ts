@@ -35,6 +35,12 @@ export class MyApp {
     this.nav.setRoot('LoginPage');
     this.menuCtrl.close();
   }
+  
+  async clearAllData() {
+    await this.authService.clearAllData();
+    this.nav.setRoot('LoginPage');
+    this.menuCtrl.close();
+  }
 
   goToTabs() {
     this.nav.setRoot('TabsPage');

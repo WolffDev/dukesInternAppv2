@@ -1,4 +1,4 @@
-import { SingleEvent } from "./SingleEvent";
+import { SingleEvent } from "./singleEvent.interface";
 
 export interface EventsResponse {
 	newToken: string,

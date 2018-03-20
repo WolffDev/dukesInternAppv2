@@ -15,7 +15,7 @@ import { NgForm } from '@angular/forms';
 export class LoginPage {
 
   private fingerprintOptions: FingerprintOptions;
-  public fingerprint = false;
+  public fingerprint: boolean;
 
   constructor(
     private authService: AuthServiceProvider,
@@ -34,18 +34,22 @@ export class LoginPage {
       localizedFallbackTitle: 'Cancel',
       localizedReason: 'Login med fingeraftryk'
     }
-    this.checkLoginStatus();
   }
-
+  
   ionViewDidLoad() {
+    console.log('View loaded');
+    this.checkLoginStatus();
     this.checkToken();
   }
 
-  async checkLoginStatus() {
-    await this.storageService.getLoginStatus()
-      .then(() => {
-        this.alreadyAuth();
-        this.navCtrl.setRoot('TabsPage');
+  checkLoginStatus() {
+    this.storageService.getLoginStatus()
+      .then(status => {
+        if(status === 'true') {
+          console.log(status, '#### FRA STATUS ####');
+          this.authService.setFingerprint(true);
+          this.alreadyAuth();
+        }
       })
       .catch(err => console.log('Something went wrong, which it should not',err));
 
@@ -58,7 +62,6 @@ export class LoginPage {
         this.touchId.verifyFingerprint('Scan dit fingeraftryk...')
           .then(result => {
             this.alreadyAuth();
-            this.navCtrl.setRoot('TabsPage');
           })
           .catch(err => console.log(err))
       }
@@ -68,7 +71,6 @@ export class LoginPage {
         this.faio.show(this.fingerprintOptions)
           .then(result => {
             this.alreadyAuth();
-            this.navCtrl.setRoot('TabsPage');
           })
           .catch(err => console.log(err))
       }
@@ -82,6 +84,7 @@ export class LoginPage {
     loading.present();
     await this.authService.login(form.value.username, form.value.password)
       .then( LoginResponse => {
+        this.authService.setFingerprint(true);
         this.authService.setToken(LoginResponse.token);
         this.authService.setUser(LoginResponse.user);
         this.storageService.setToken(LoginResponse.token);
@@ -106,10 +109,12 @@ export class LoginPage {
   async checkToken() {
     const token = await this.storageService.getToken();
     if(token !== '') {
-      console.log(token);
+      await this.authService.setFingerprint(true);
+      this.fingerprint = this.authService.getFingerprint();
       console.log('TOKEN IS NOT EMPTY!!!');
-      this.fingerprint = true;
     } else {
+      await this.authService.setFingerprint(false);
+      this.fingerprint = this.authService.getFingerprint();
       console.log('TOKEN IS EMPTY!!!');
     }
   }
@@ -118,6 +123,7 @@ export class LoginPage {
     this.authService.setToken(await this.storageService.getToken());
     this.authService.setUser(await this.storageService.getUserData());
     await this.storageService.setLoginStatus('true');
+    this.navCtrl.setRoot('TabsPage');
   }
 
 }

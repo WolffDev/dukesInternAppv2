@@ -13,7 +13,7 @@ export class AuthServiceProvider {
   private user;
   private token: string;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
-  private refreshTokenUrl = 'http://dukesdenmark.dk/api/v1/refresh-token';
+  private refreshTokenUrl = 'http://dukesdenmark.dk:50080/api/v1/refresh-token';
 
   constructor(
     private http: HttpClient,
@@ -69,13 +69,11 @@ export class AuthServiceProvider {
   }
 
   public async refreshToken() {
-    this.setToken(await this.storageService.getToken());
-    return this.http.get<RefreshTokenResponse>(this.refreshTokenUrl).toPromise()
-      // .then(RefreshTokenResponse => {
-      //   console.log(JSON.stringify(RefreshTokenResponse.token));
-      //   this.setToken(RefreshTokenResponse.token);
-      //   this.storageService.setToken(RefreshTokenResponse.token);
-      // })
+    await this.setToken(await this.storageService.getToken());
+    this.http.get<RefreshTokenResponse>(this.refreshTokenUrl).toPromise()
+      .then(RefreshTokenResponse => {
+        this.setToken(RefreshTokenResponse.token)
+      })
   }
 
 

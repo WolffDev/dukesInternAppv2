@@ -130,9 +130,9 @@ export class LoginPage {
   }
 
   async alreadyAuth() {
-    this.authService.setToken(await this.storageService.getToken());
-    this.authService.setUser(await this.storageService.getUserData());
-    // this.authService.refreshToken();
+    // this.authService.setToken(await this.storageService.getToken());
+    // this.authService.setUser(await this.storageService.getUserData());
+    await this.authService.refreshToken();
     await this.storageService.setLoginStatus('true');
     const options: NativeTransitionOptions = {
       direction: 'up',

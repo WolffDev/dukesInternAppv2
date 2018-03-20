@@ -1,3 +1,4 @@
+import { RefreshTokenResponse } from './../../models/auth/refreshTokenResponse.interface';
 import { SingleNews } from './../../models/news/singleNews.interface';
 import { NewsServiceProvider } from './../../providers/news-service/news-service';
 import { NewsResponse } from './../../models/news/newsResponse.interface';
@@ -42,9 +43,13 @@ export class NewsPage {
   }
 
   
-  checkToken() {
+  async checkToken() {
     let token = this.authService.getToken();
     this.alert(JSON.stringify(token));
+    // await this.authService.refreshToken()
+    //   .then(RefreshTokenResponse => {
+    //     this.alert(RefreshTokenResponse.token)
+    //   })
   }
 
   newsDetails(data) {

@@ -1,12 +1,7 @@
 // import { NgModule } from '@angular/core';
-// import { StatsViewComponent } from './stats-view/stats-view';
 // @NgModule({
-// 	declarations: [
-// 		StatsViewComponent,
-// 	],
+// 	declarations: [],
 // 	imports: [],
-// 	exports: [
-// 		StatsViewComponent
-// 	]
+// 	exports: []
 // })
 // export class ComponentsModule {}

@@ -1,3 +1,4 @@
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { LoginResponse } from './../../models/login/loginResponse.interface';
 import { TouchID } from '@ionic-native/touch-id';
 import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio';
@@ -25,7 +26,8 @@ export class LoginPage {
     private faio: FingerprintAIO,
     private plt: Platform,
     private touchId: TouchID,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private nativeTransitions: NativePageTransitions
   ) {
     this.fingerprintOptions = {
       clientId: 'DukesDenmarkInternApp',
@@ -90,6 +92,13 @@ export class LoginPage {
         this.storageService.setToken(LoginResponse.token);
         this.storageService.setUserData(LoginResponse.user);
         this.storageService.setLoginStatus('true');
+        const options: NativeTransitionOptions = {
+          direction: 'up',
+          duration: 400,
+          iosdelay: 100,
+          androiddelay: 100
+        }
+        this.nativeTransitions.flip(options)
         this.navCtrl.setRoot('TabsPage');
         loading.dismiss();
 
@@ -123,6 +132,13 @@ export class LoginPage {
     this.authService.setToken(await this.storageService.getToken());
     this.authService.setUser(await this.storageService.getUserData());
     await this.storageService.setLoginStatus('true');
+    const options: NativeTransitionOptions = {
+      direction: 'up',
+      duration: 400,
+      iosdelay: 100,
+      androiddelay: 100
+    }
+    this.nativeTransitions.flip(options)
     this.navCtrl.setRoot('TabsPage');
   }
 

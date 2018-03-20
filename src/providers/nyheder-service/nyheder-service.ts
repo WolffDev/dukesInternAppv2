@@ -1,10 +1,10 @@
-import { NyhederResponse } from './../../models/nyheder/nyhederResponse.interface';
+import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { AuthServiceProvider } from './../auth-service/auth-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class NyhederServiceProvider {
+export class NewsServiceProvider {
 
   private apiEndpoint: string = 'https://www.dukesdenmark.dk/wp-json/api/v1/news';
 
@@ -13,7 +13,7 @@ export class NyhederServiceProvider {
   }
 
   getNews() {
-    return this.http.get<NyhederResponse>(`${this.apiEndpoint}`).toPromise();
+    return this.http.get<NewsResponse>(`${this.apiEndpoint}`).toPromise();
   }
 
   // async getSingleNews(id) {

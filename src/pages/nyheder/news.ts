@@ -1,19 +1,20 @@
-import { Nyhed } from './../../models/nyheder/nyhed.interface';
+import { NewsServiceProvider } from './../../providers/nyheder-service/nyheder-service';
+import { NewsResponse } from './../../models/news/newsResponse.interface';
+import { SingleNews } from './../../models/news/singleNews.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
-import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 // import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
-  selector: 'page-nyheder',
-  templateUrl: 'nyheder.html',
+  selector: 'page-news',
+  templateUrl: 'news.html',
 })
-export class NyhederPage {
+export class NewsPage {
 
-  news: Nyhed[];
+  news: SingleNews[];
   amountOfGuests;
   userData;
 
@@ -21,8 +22,8 @@ export class NyhederPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private alertCtrl: AlertController, 
-    public nyhederService: NyhederServiceProvider,
     public storageService: StorageServiceProvider,
+    private newsService: NewsServiceProvider,
     private authService: AuthServiceProvider // only used for testing atm
   ) {
     
@@ -33,7 +34,6 @@ export class NyhederPage {
   }
 
   getNews() {
-    
   }
 
   

@@ -52,6 +52,7 @@ export class LoginPage {
           this.authService.setFingerprint(true);
           this.alreadyAuth();
         }
+        return;
       })
       .catch(err => console.log('Something went wrong, which it should not',err));
 
@@ -129,8 +130,9 @@ export class LoginPage {
   }
 
   async alreadyAuth() {
-    this.authService.setToken(await this.storageService.getToken());
-    this.authService.setUser(await this.storageService.getUserData());
+    // this.authService.setToken(await this.storageService.getToken());
+    // this.authService.setUser(await this.storageService.getUserData());
+    await this.authService.refreshToken();
     await this.storageService.setLoginStatus('true');
     const options: NativeTransitionOptions = {
       direction: 'up',

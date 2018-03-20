@@ -1,4 +1,4 @@
-export interface Nyhed {
+export interface SingleNews {
 	ID: string;
 	post_author: string;
 	post_date: string;

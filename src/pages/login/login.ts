@@ -34,12 +34,12 @@ export class LoginPage {
       localizedFallbackTitle: 'Cancel',
       localizedReason: 'Login med fingeraftryk'
     }
+    this.checkLoginStatus();
+    this.checkToken();
   }
   
   ionViewDidLoad() {
     console.log('View loaded');
-    this.checkLoginStatus();
-    this.checkToken();
   }
 
   checkLoginStatus() {

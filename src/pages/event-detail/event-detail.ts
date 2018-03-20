@@ -1,4 +1,3 @@
-import { SingleEvent } from './../../interface/SingleEvent';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 

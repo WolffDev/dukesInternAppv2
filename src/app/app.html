@@ -31,6 +31,14 @@
 			<button
 				ion-item
 				icon-left
+				(click)="clearAllData()">
+					<ion-icon name="trash"></ion-icon>
+					Log ud og slet data
+			</button>
+
+			<button
+				ion-item
+				icon-left
 				(click)="logout()">
 					<ion-icon name="log-out"></ion-icon>
 					Log ud

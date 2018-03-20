@@ -3,7 +3,7 @@ import { StorageServiceProvider } from './../../providers/storage-service/storag
 import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -37,7 +37,7 @@ export class NyhederPage {
 
   
   checkToken() {
-    let token = this.authService.authenticated;
+    let token = this.authService.getToken();
     this.alert(token);
   }
 
@@ -54,8 +54,6 @@ export class NyhederPage {
     alert.present();
   }
   
-  sendConsoleMsg() {
-  }
 
   testDetails() {
     this.navCtrl.push('NyhedDetailPage')
@@ -63,7 +61,7 @@ export class NyhederPage {
 
   updateNews(refresher) {
     setTimeout(() => {
-      console.log(event);
+      console.log(refresher);
       refresher.complete();
     }, 3000)
   }

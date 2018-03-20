@@ -17,7 +17,7 @@ import { NyhederPage } from './nyheder';
     PipesModule,
   ],
   providers: [
-    NyhederServiceProvider
+    NyhederServiceProvider,
   ]
 })
 export class NyhederPageModule {}

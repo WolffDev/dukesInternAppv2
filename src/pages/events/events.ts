@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { EventServiceProvider } from '../../providers/event-service/event-service';
-import { SingleEvent } from '../../interface/SingleEvent';
+import { SingleEvent } from '../../models/events/singleEvent.interface';
 
 
 // interface eventsResponse {

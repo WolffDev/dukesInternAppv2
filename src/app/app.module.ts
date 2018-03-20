@@ -1,6 +1,6 @@
 import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
-import { TabsPage } from './../pages/tabs/tabs';
-import { LoginPage } from './../pages/login/login';
+// import { TabsPage } from './../pages/tabs/tabs';
+// import { LoginPage } from './../pages/login/login';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,8 +19,8 @@ import { TouchID } from '@ionic-native/touch-id'
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage,
-    LoginPage,
+    // TabsPage,
+    // LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +34,8 @@ import { TouchID } from '@ionic-native/touch-id'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    TabsPage,
-    LoginPage,
+    // TabsPage,
+    // LoginPage,
   ],
   providers: [
     {

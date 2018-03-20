@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EventsResponse } from '../../interface/EventsResponse';
+import { EventsResponse } from '../../models/events/eventsResponse.interface.ts';
 
 @Injectable()
 export class EventServiceProvider {

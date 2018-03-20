@@ -69,10 +69,13 @@ export class AuthServiceProvider {
   }
 
   public async refreshToken() {
-    const token = await this.http.get<RefreshTokenResponse>(this.refreshTokenUrl);
-    await this.setToken(token);
-    await this.storageService.setToken(token);
-
+    this.setToken(await this.storageService.getToken());
+    return this.http.get<RefreshTokenResponse>(this.refreshTokenUrl).toPromise()
+      // .then(RefreshTokenResponse => {
+      //   console.log(JSON.stringify(RefreshTokenResponse.token));
+      //   this.setToken(RefreshTokenResponse.token);
+      //   this.storageService.setToken(RefreshTokenResponse.token);
+      // })
   }
 
 

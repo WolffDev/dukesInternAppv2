@@ -1,6 +1,6 @@
-import { NewsServiceProvider } from './../../providers/nyheder-service/nyheder-service';
-import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { SingleNews } from './../../models/news/singleNews.interface';
+import { NewsServiceProvider } from './../../providers/news-service/news-service';
+import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { Component } from '@angular/core';
@@ -34,12 +34,17 @@ export class NewsPage {
   }
 
   getNews() {
+    // this.newsService.getNews()
+    //   .then(NewsResponse => {
+    //     // this.news = NewsResponse.news;
+    //     console.log(NewsResponse.news);
+    //   })
   }
 
   
   checkToken() {
     let token = this.authService.getToken();
-    this.alert(token);
+    this.alert(JSON.stringify(token));
   }
 
   newsDetails(data) {

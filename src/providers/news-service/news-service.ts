@@ -6,14 +6,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class NewsServiceProvider {
 
-  private apiEndpoint: string = 'https://www.dukesdenmark.dk/wp-json/api/v1/news';
+  private newsUrl: string = 'https://www.dukesdenmark.dk/wp-json/api/v1/news';
 
 
   constructor(private http: HttpClient, private authService: AuthServiceProvider) {
   }
 
   getNews() {
-    return this.http.get<NewsResponse>(`${this.apiEndpoint}`).toPromise();
+    return this.http.get<NewsResponse>(this.newsUrl).toPromise();
   }
 
   // async getSingleNews(id) {

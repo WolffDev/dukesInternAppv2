@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AvatarModule } from 'ng2-avatar';
 import { NewsPage } from './news';
-import { NewsServiceProvider } from '../../providers/nyheder-service/nyheder-service';
+import { NewsServiceProvider } from '../../providers/news-service/news-service';
 
 @NgModule({
   declarations: [

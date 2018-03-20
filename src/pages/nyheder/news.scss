@@ -1,27 +1,14 @@
 page-news {
 	.news-card {
 		background-color: rgba(24, 57, 35, .15);
-		margin: 10px 0 25px;
-		width: 100%;
-		h3 {
-			margin: 1rem 0 0;
+		margin: 10px auto 20px;
+		h2 {
+			margin: .5em 0.3em .5em;
 		}
-		.author {
-			align-self: flex-end;
-		}
-		ion-card-content {
-			display: flex;
-			avatar {
-				margin-right: 15px;
-			}
-		}
-		ion-item, .item-ios {
-			background-color: inherit;
-			border: none !important;
-			.author {
-				font-size: 12px;
+		.news-body {
+			p {
+				margin-top: 0;
 			}
 		}
 	}
-
 }

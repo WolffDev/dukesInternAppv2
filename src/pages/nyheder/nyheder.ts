@@ -1,3 +1,4 @@
+import { Nyhed } from './../../models/nyheder/nyhed.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { NyhederServiceProvider } from './../../providers/nyheder-service/nyheder-service';
@@ -12,7 +13,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class NyhederPage {
 
-  news = [];
+  news: Nyhed[];
   amountOfGuests;
   userData;
 

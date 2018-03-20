@@ -8,7 +8,7 @@ export class AuthInterceptorProvider implements HttpInterceptor {
   constructor(private authService: AuthServiceProvider) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if(req.url.includes('dukesdenmark.dk:50080/api')) {
+    if(req.url.includes('dukesdenmark.dk:50080/api') || req.url.includes('dukesdenmark.dk/wp-json')) {
       const token = this.authService.getToken();
       const newReq = req.clone({
         headers: req.headers.set(

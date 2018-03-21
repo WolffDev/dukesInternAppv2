@@ -23,10 +23,10 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div class="news-card shadow-default" *ngFor="let news of news">
+  <div class="news-card shadow-default" *ngFor="let news of news; index as i">
     <ion-grid>
       <ion-row class="news-title">
-        <h2>{{news.title}}</h2>
+        <h2>{{news.title}} {{i}}</h2>
       </ion-row>
       <ion-row>
         <ion-col col-3 class="author-avatar">
@@ -34,6 +34,7 @@
         </ion-col>
         <ion-col col-9>
           <ion-row class="news-body">
+            {{news?.excerpt}}
             <p>{{news.content}}</p>
           </ion-row>
           <ion-row class="author">@{{news.author | firstWord}} - {{news.date | dfnsDistanceInWordsToNow: i18nOptions }}</ion-row>

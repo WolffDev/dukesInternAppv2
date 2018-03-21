@@ -5,8 +5,9 @@ import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 // import 'rxjs/add/operator/map';
+import * as daLocale from 'date-fns/locale/da/index.js'
 
 @IonicPage()
 @Component({
@@ -18,6 +19,9 @@ export class NewsPage {
   news: SingleNews[];
   amountOfGuests;
   userData;
+  public i18nOptions = {
+    locale: daLocale
+  }
 
   constructor(
     public navCtrl: NavController, 
@@ -25,6 +29,7 @@ export class NewsPage {
     private alertCtrl: AlertController, 
     public storageService: StorageServiceProvider,
     private newsService: NewsServiceProvider,
+    private loadingCtrl: LoadingController,
     private authService: AuthServiceProvider // only used for testing atm
   ) {
     
@@ -35,21 +40,30 @@ export class NewsPage {
   }
 
   getNews() {
-    // this.newsService.getNews()
-    //   .then(NewsResponse => {
-    //     // this.news = NewsResponse.news;
-    //     console.log(NewsResponse.news);
-    //   })
+    let loading = this.loadingCtrl.create({
+      content: 'Henter Nyheder'
+    });
+    loading.present();
+    this.newsService.getNews()
+      .then(NewsResponse => {
+        loading.dismiss();
+        this.news = NewsResponse.news;
+      })
+      .catch(err => {
+        loading.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Fejl ved indlæsning',
+          message: JSON.stringify(err),
+          buttons: ['Træls']
+        });
+        alert.present();
+      })
   }
 
   
   async checkToken() {
     let token = this.authService.getToken();
     this.alert(JSON.stringify(token));
-    // await this.authService.refreshToken()
-    //   .then(RefreshTokenResponse => {
-    //     this.alert(RefreshTokenResponse.token)
-    //   })
   }
 
   newsDetails(data) {
@@ -71,10 +85,15 @@ export class NewsPage {
   }
 
   updateNews(refresher) {
-    setTimeout(() => {
-      console.log(refresher);
-      refresher.complete();
-    }, 3000)
+    this.newsService.getNews()
+      .then(NewsResponse => {
+        this.news = NewsResponse.news;
+        refresher.complete();
+      })
+      .catch(err => {
+        console.log(err);
+        refresher.complete();
+      })
   }
 
 }

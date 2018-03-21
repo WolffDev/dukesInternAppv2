@@ -12,8 +12,8 @@ export class NewsServiceProvider {
   constructor(private http: HttpClient, private authService: AuthServiceProvider) {
   }
 
-  getNews() {
-    return this.http.get<NewsResponse>(this.newsUrl).toPromise();
+  public getNews() {
+    return this.http.get<NewsResponse>('http://dukesdenmark.dk:50080/api/v1/news').toPromise();
   }
 
   // async getSingleNews(id) {

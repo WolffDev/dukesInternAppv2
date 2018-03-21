@@ -11,6 +11,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FirstWordPipe implements PipeTransform {
   /**
    * Takes a value and returns 1st or 2nd string, seperated by a space - false/true as args
+   * ie {{ David Wolff | firstWord:false }} -> gives last name
    */
   transform(value: string, args: boolean = true): string | boolean {
     if (value === null) return false;

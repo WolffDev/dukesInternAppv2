@@ -11,8 +11,8 @@ import { AvatarModule } from 'ng2-avatar';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio'
-import { TouchID } from '@ionic-native/touch-id'
-import { NativePageTransitions } from '@ionic-native/native-page-transitions'
+import { TouchID } from '@ionic-native/touch-id';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     StorageServiceProvider,
-    NativePageTransitions
+    NativePageTransitions,
   ]
 })
 export class AppModule {}

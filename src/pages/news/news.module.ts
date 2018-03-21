@@ -1,9 +1,10 @@
 import { PipesModule } from './../../pipes/pipes.module';
+import { NewsServiceProvider } from './../../providers/news-service/news-service';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AvatarModule } from 'ng2-avatar';
 import { NewsPage } from './news';
-import { NewsServiceProvider } from '../../providers/news-service/news-service';
+import { DateFnsModule } from 'ngx-date-fns';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { NewsServiceProvider } from '../../providers/news-service/news-service';
     IonicPageModule.forChild(NewsPage),
     AvatarModule,
     PipesModule,
+    DateFnsModule
   ],
   providers: [
     NewsServiceProvider

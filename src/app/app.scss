@@ -112,9 +112,15 @@ ion-content {
 	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.50);
 }
 
+// Menu bar
+[icon-left] ion-icon,
+[icon-start] ion-icon {
+	line-height: 1.4em;
+}
+
 // Refresher
 .has-refresher > .scroll-content {
-	border-top: 1px solid #000;
+	border-top: none;
 }
 
 /* =======  End of General Styles  ======= */

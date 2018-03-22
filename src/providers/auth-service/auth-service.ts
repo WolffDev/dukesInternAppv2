@@ -1,3 +1,4 @@
+import { RefreshTokenResponse } from './../../models/auth/refreshTokenResponse.interface';
 import { LoginResponse } from './../../models/login/loginResponse.interface';
 import { StorageServiceProvider } from './../storage-service/storage-service';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +13,7 @@ export class AuthServiceProvider {
   private user;
   private token: string;
   private loginUrl = 'https://www.dukesdenmark.dk/wp-json/jwt-auth/v1/token';
+  private refreshTokenUrl = 'http://dukesdenmark.dk:50080/api/v1/refresh-token';
 
   constructor(
     private http: HttpClient,
@@ -64,6 +66,14 @@ export class AuthServiceProvider {
 
   public getFingerprint(): boolean {
     return this.fingerprint;
+  }
+
+  public async refreshToken() {
+    await this.setToken(await this.storageService.getToken());
+    this.http.get<RefreshTokenResponse>(this.refreshTokenUrl).toPromise()
+      .then(RefreshTokenResponse => {
+        this.setToken(RefreshTokenResponse.token)
+      })
   }
 
 

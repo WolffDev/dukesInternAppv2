@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Nyheder</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="global-background-image">
+  <ion-refresher (ionRefresh)="updateNews($event)" [pullMax]="150" [pullMin]="120">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Træk ned for at opdatere nyheder"
+      refreshingSpinner="circles"
+      refreshingText="Opdaterer..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="news-card shadow-default" *ngFor="let news of news; index as i" (click)="goToNewsDetails(i)">
+    <ion-grid>
+      <ion-row class="news-title">
+        <h3>{{news.title}}</h3>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 class="author-avatar">
+          <avatar name="{{news.author}}" displayType="circle" size="75"></avatar>
+        </ion-col>
+        <ion-col col-9>
+          <ion-row class="news-body">
+            <p *ngIf = "news.excerpt != ''; else newsContent">
+            {{news.excerpt}}
+            <br>
+            (læs mere)
+            </p>
+            <ng-template #newsContent>
+              <p>
+                {{news.content}}
+              </p>
+            </ng-template>
+          </ion-row>
+          <ion-row class="author">@{{news.author | firstWord}} - {{news.date | dfnsDistanceInWordsToNow: i18nOptions }} siden</ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+</ion-content>

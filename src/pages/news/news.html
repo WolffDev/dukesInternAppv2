@@ -34,8 +34,16 @@
         </ion-col>
         <ion-col col-9>
           <ion-row class="news-body">
-            {{news?.excerpt}}
-            <p>{{news.content}}</p>
+            <p *ngIf = "news.excerpt != ''; else newsContent">
+            {{news.excerpt}}
+            <br>
+            (læs mere)
+            </p>
+            <ng-template #newsContent>
+              <p>
+                {{news.content}}
+              </p>
+            </ng-template>
           </ion-row>
           <ion-row class="author">@{{news.author | firstWord}} - {{news.date | dfnsDistanceInWordsToNow: i18nOptions }} siden</ion-row>
         </ion-col>

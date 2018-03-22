@@ -31,7 +31,6 @@ export class NewsDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log(JSON.stringify(this.news));
   }
 
   onClose() {

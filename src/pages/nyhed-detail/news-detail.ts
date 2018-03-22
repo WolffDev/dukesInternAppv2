@@ -10,10 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-nyhed-detail',
-  templateUrl: 'nyhed-detail.html',
+  selector: 'page-news-detail',
+  templateUrl: 'news-detail.html',
 })
-export class NyhedDetailPage {
+export class NewsDetailPage {
 
   data;
 

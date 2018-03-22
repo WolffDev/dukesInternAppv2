@@ -23,21 +23,21 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div class="news-card shadow-default" *ngFor="let news of news; index as i">
+  <div class="news-card shadow-default" *ngFor="let news of news; index as i" (click)="goToNewsDetails(i)">
     <ion-grid>
       <ion-row class="news-title">
         <h3>{{news.title}}</h3>
       </ion-row>
       <ion-row>
         <ion-col col-3 class="author-avatar">
-          <avatar name="{{news.author}}" displayType="circle" size="80"></avatar>
+          <avatar name="{{news.author}}" displayType="circle" size="75"></avatar>
         </ion-col>
         <ion-col col-9>
           <ion-row class="news-body">
             {{news?.excerpt}}
             <p>{{news.content}}</p>
           </ion-row>
-          <ion-row class="author">@{{news.author | firstWord}} - {{news.date | dfnsDistanceInWordsToNow: i18nOptions }}</ion-row>
+          <ion-row class="author">@{{news.author | firstWord}} - {{news.date | dfnsDistanceInWordsToNow: i18nOptions }} siden</ion-row>
         </ion-col>
       </ion-row>
     </ion-grid>

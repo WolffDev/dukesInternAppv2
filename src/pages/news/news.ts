@@ -5,7 +5,7 @@ import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, LoadingController, Modal, ModalController } from 'ionic-angular';
 // import 'rxjs/add/operator/map';
 import * as daLocale from 'date-fns/locale/da/index.js'
 
@@ -25,7 +25,7 @@ export class NewsPage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams, 
+    private modalCtrl: ModalController,
     private alertCtrl: AlertController, 
     public storageService: StorageServiceProvider,
     private newsService: NewsServiceProvider,
@@ -66,8 +66,12 @@ export class NewsPage {
     this.alert(JSON.stringify(token));
   }
 
-  newsDetails(data) {
-    this.navCtrl.push('NyhedDetailPage', {data});
+  goToNewsDetails(index) {
+    const news = this.news[index];
+    const modal = this.modalCtrl.create('NewsDetailPage', {news})
+    modal.present();
+    // this.navCtrl.push('NewsDetailPage', {news});
+    // console.log(JSON.stringify(this.news[index]));
   }
 
   alert(data) {

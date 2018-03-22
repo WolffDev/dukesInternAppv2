@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { SingleNews } from '../../models/news/singleNews.interface';
+import * as daLocale from 'date-fns/locale/da/index.js'
 
 /**
  * Generated class for the NyhedDetailPage page.
@@ -15,14 +17,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewsDetailPage {
 
-  data;
+  public news: SingleNews;
+  public i18nOptions = {
+    locale: daLocale
+  }
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private viewCtrl: ViewController
+  ) {
+    this.news = this.navParams.get('news')
   }
 
   ionViewDidLoad() {
-    this.data = this.navParams.get('data');
+    console.log(JSON.stringify(this.news));
+  }
+
+  onClose() {
+    this.viewCtrl.dismiss();
   }
 
 }

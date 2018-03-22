@@ -1,16 +1,35 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title> {{ data?.title }} </ion-title>
+  <ion-navbar text-center>
+    <ion-title>Nyhed</ion-title>
     <ion-buttons end>
-      @{{ data?.author | firstWord:false }}
-    </ion-buttons>
+      <button icon-only ion-button (click)="onClose()">
+        <ion-icon color="light" name="close" large></ion-icon>
+      </button>
+  </ion-buttons>
   </ion-navbar>
-
+  <ion-toolbar>
+    <ion-row>
+      <ion-col col-8 class="news-title" ion-text color="light">
+        {{news.title}}
+      </ion-col>
+      <ion-col col-4 class="details">
+        <span ion-text color="light" class="news-author">@{{ news.author | firstWord }}</span>
+        <br>
+        <span ion-text color="light" class="news-date">{{ news.date | dfnsFormat : 'DD/MM-YYYY' : i18nOptions}}</span>
+        <br>
+        <span ion-text color="light" class="news-time">{{news.date | dfnsFormat : '[kl]. HH:MM' : i18nOptions}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-  
+  <p ion-text color="light">
+    {{news.content}}
+  </p>
+  <br>
+  <button ion-button (click)="onClose()" block class="close-btn">Luk besked</button>
 
 </ion-content>

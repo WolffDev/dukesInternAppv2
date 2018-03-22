@@ -31,10 +31,11 @@ export class EventsPage {
   }
 
   ngOnInit() {
-    this.getEvents();
+    
   }
 
   ionViewDidLoad() {
+    this.getEvents();
   }
 
   getEvents() {
@@ -53,7 +54,7 @@ export class EventsPage {
         const alert = this.alertCtrl.create({
           title: 'Fejl ved indlæsning',
           message: err.message,
-          buttons: ['Træls']
+          buttons: ['Prøv igen']
         });
         alert.present();
       })

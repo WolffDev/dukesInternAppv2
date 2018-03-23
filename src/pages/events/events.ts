@@ -86,8 +86,8 @@ export class EventsPage {
     modal.present();
     // this.navCtrl.push('EventDetailPage')
   }
-  goToEventDetail(eventId) {
-    this.navCtrl.push('EventDetailPage', {eventId});
+  goToEventDetail(eventId, event) {
+    this.navCtrl.push('EventDetailPage', {eventId, event});
   }
 
 }

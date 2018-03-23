@@ -6,19 +6,33 @@
 
 
   <ion-toolbar no-border-top>
-    <!-- <ion-searchbar placeholder="Søg efter deltager" showCancelButton color="danger" (ionInput)="filterItems($event)" (ionClear)="resetEvents($event)" (ionCancel)="resetEvents($event)">
-    </ion-searchbar> -->
+    <h4 ion-text text-center color="light">{{event}}</h4>
+    <h4 ion-text text-center color="light">Antal tilmeldte: {{amount}}</h4>
+    <ion-searchbar 
+      [(ngModel)]="searchTerm" 
+      [formControl]="searchControl" 
+      (ionInput)="onSearchInput()"
+      showCancelButton color="danger"
+      placeholder="Søg efter medlem"
+    >
+    </ion-searchbar>
   </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list [virtualScroll]="attendees">
-      <button
-      ion-item
-      *virtualItem="let attendee">
-      {{ attendee.name }}
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list [virtualScroll]="attendees" approxItemHeight="55px">
+    <button
+    detail-push
+    ion-item
+    *virtualItem="let attendee"
+    (click)="onAttendeeClick(attendee)"
+    >
+    {{ attendee.name }}
     </button>
   </ion-list>
 </ion-content>

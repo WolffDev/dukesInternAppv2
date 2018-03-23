@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let event of events" class="event-card shadow-default" (click)="goToEventDetail(event.id)">
+  <ion-card *ngFor="let event of events" class="event-card shadow-default" (click)="goToEventDetail(event.id, event.event)">
     <ion-card-header>
       Lan Event
     </ion-card-header>

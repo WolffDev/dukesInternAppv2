@@ -48,7 +48,8 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$segment-button-ios-text-color: map-get($colors, fingerPrint);
+$segment-button-ios-background-color-activated: map-get($colors, light);
 
 
 
@@ -56,6 +57,8 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 $item-md-detail-push-show: true;
+$segment-button-md-text-color-activated: map-get($colors, light);
+$segment-button-md-border-color-activated: map-get($colors, light);
 
 
 

@@ -6,7 +6,8 @@ import { CategoryResponse } from './../../models/forum/categoryResponse.interfac
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Category } from './../../models/forum/category.interface';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import * as daLocale from 'date-fns/locale/da/index.js'
 
 @IonicPage()
 @Component({
@@ -15,9 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ForumPage implements OnInit {
 
-  categories: Category[];
-  activePosts: Post[];
+  public categories: Category[];
+  public activePosts: Post[];
   public selectedCategory: string;
+  public i18nOptions = {
+    locale: daLocale
+  }
 
   constructor(
     public navCtrl: NavController, 
@@ -25,28 +29,41 @@ export class ForumPage implements OnInit {
     private forumService: ForumServiceProvider,
     private authService: AuthServiceProvider,
     private storageService: StorageServiceProvider,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {
-    this.getCategories();
   }
   ngOnInit() {
   }
   
   ionViewWillEnter(){
-    console.log(JSON.stringify(this.categories));
   }
   ionViewDidEnter(){
   }
   ionViewDidLoad() {
-    console.log(JSON.stringify(this.categories));
+    this.getCategories();
+    console.log('#### FORUM VIEW LOADED ####');
   }
 
   getCategories() {
+    let loading = this.loadingCtrl.create({
+      content: 'Henter Forum'
+    });
+    loading.present();
     this.forumService.getCategories().then( CategoryResponse => {
       this.categories = CategoryResponse.categories;
       this.selectedCategory = CategoryResponse.categories[0].title;
-      this.authService.setToken(CategoryResponse.token);
-      this.storageService.setToken(CategoryResponse.token);
       this.getNewPosts(CategoryResponse.categories[0].category_id)
+      loading.dismiss();
+    })
+    .catch(err => {
+      loading.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Fejl ved indlæsning',
+          message: JSON.stringify(err.message),
+          buttons: ['Prøv igen']
+        });
+        alert.present();
     })
   }
   onSegmentChange($event, index) {
@@ -60,8 +77,8 @@ export class ForumPage implements OnInit {
     })
     .catch(err => console.log(JSON.stringify(err)));
   }
-  showPosts() {
-    console.log(JSON.stringify(this.activePosts));
+  goToPostDetails(postId) {
+    console.log(postId);
   }
 
 }

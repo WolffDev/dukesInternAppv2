@@ -33,6 +33,12 @@
     (click)="onAttendeeClick(attendee)"
     >
     {{ attendee.name }}
+    <br>
+    <div class="small-details"> 
+      Plads: {{ attendee.seat }}
+      <br>
+      Netpass: {{ attendee.netpass }}
+    </div>
     </button>
   </ion-list>
 </ion-content>

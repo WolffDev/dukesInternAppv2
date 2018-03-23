@@ -34,18 +34,10 @@ export class ForumPage implements OnInit {
     private alertCtrl: AlertController
   ) {
   }
-  ngOnInit() {
-  }
-  
-  ionViewWillEnter(){
-  }
-  ionViewDidEnter(){
-  }
   ionViewDidLoad() {
     this.getCategories();
     console.log('#### FORUM VIEW LOADED ####');
   }
-
   getCategories() {
     let loading = this.loadingCtrl.create({
       content: 'Henter Forum'
@@ -97,11 +89,8 @@ export class ForumPage implements OnInit {
     });
     this.activePosts = posts[categoryTitle];
   }
-  testbtn(){
-    console.log(JSON.stringify(this.forumPosts));
-    // this.forumPosts.map(value => {
-    //   console.log(JSON.stringify(value));
-    // })
+  addNewPost() {
+    this.navCtrl.push('PostPage', {this:'that'});
   }
 
 }

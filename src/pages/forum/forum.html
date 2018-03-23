@@ -19,26 +19,30 @@
 </ion-header>
 
 <ion-content>
-  <button ion-button (click)="testbtn()">new posts</button>
   <div class="post-card shadow-default" *ngFor="let post of activePosts; index as i" (click)="goToPostDetails(post.post_id)">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3 class="author-avatar">
-            <avatar name="{{post.user_name}}" displayType="circle" size="75"></avatar>
-          </ion-col>
-          <ion-col col-9>
-            <ion-row class="post-title">
-              <h3>
-                {{post.title}}
-              </h3>
-            </ion-row>
-            <ion-row class="post-author">
-              @{{post.user_name}}
-              <br>
-              {{post.created | dfnsDistanceInWordsToNow: i18nOptions }} siden
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3 class="author-avatar">
+          <avatar name="{{post.user_name}}" displayType="circle" size="75"></avatar>
+        </ion-col>
+        <ion-col col-9>
+          <ion-row class="post-title">
+            <h3>
+              {{post.title}}
+            </h3>
+          </ion-row>
+          <ion-row class="post-author">
+            @{{post.user_name}}
+            <br>
+            {{post.created | dfnsDistanceInWordsToNow: i18nOptions }} siden
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-fab bottom right>
+    <button ion-fab large color="fabColor" class="shadow-default" (click)="addNewPost()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

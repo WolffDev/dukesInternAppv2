@@ -1,18 +1,24 @@
 <ion-header>
 
   <ion-navbar>
-    <!-- <ion-buttons left>
-      <button ion-button left (click)="onClose()" color="light">Tilbage</button>
-    </ion-buttons> -->
-    <ion-title>Single Event</ion-title>
+    <ion-title>Event</ion-title>
   </ion-navbar>
 
+
   <ion-toolbar no-border-top>
+    <!-- <ion-searchbar placeholder="Søg efter deltager" showCancelButton color="danger" (ionInput)="filterItems($event)" (ionClear)="resetEvents($event)" (ionCancel)="resetEvents($event)">
+    </ion-searchbar> -->
   </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  
+  <ion-list [virtualScroll]="attendees">
+      <button
+      ion-item
+      *virtualItem="let attendee">
+      {{ attendee.name }}
+    </button>
+  </ion-list>
 </ion-content>

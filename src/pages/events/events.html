@@ -9,18 +9,15 @@
     <ion-title>Events</ion-title>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
-    <ion-searchbar placeholder="Søg efter deltager" showCancelButton color="danger" (ionInput)="filterItems($event)" (ionClear)="resetEvents($event)" (ionCancel)="resetEvents($event)"></ion-searchbar>
-  </ion-toolbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  <ion-list>
-    <button *ngFor="let event of events" ion-item (click)="onItemClick($event, event)">
-      {{event?.event}}
-    </button>
-  </ion-list>
-  
+<ion-content>
+  <ion-card *ngFor="let event of events" class="event-card shadow-default" (click)="goToEventDetail(event.id)">
+    <ion-card-header>
+      Lan Event
+    </ion-card-header>
+    <ion-card-content>
+      {{event.event}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

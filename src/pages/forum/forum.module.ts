@@ -1,3 +1,4 @@
+import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ForumPage } from './forum';
@@ -9,5 +10,8 @@ import { ForumPage } from './forum';
   imports: [
     IonicPageModule.forChild(ForumPage),
   ],
+  providers: [
+    ForumServiceProvider
+  ]
 })
 export class ForumPageModule {}

@@ -16,6 +16,7 @@ import * as daLocale from 'date-fns/locale/da/index.js'
 })
 export class ForumPage implements OnInit {
 
+  public forumPosts = [];
   public categories: Category[];
   public activePosts: Post[];
   public selectedCategory: string;
@@ -53,7 +54,7 @@ export class ForumPage implements OnInit {
     this.forumService.getCategories().then( CategoryResponse => {
       this.categories = CategoryResponse.categories;
       this.selectedCategory = CategoryResponse.categories[0].title;
-      this.getNewPosts(CategoryResponse.categories[0].category_id)
+      this.getNewPosts(CategoryResponse.categories[0].category_id);
       loading.dismiss();
     })
     .catch(err => {
@@ -66,19 +67,41 @@ export class ForumPage implements OnInit {
         alert.present();
     })
   }
-  onSegmentChange($event, index) {
-    this.selectedCategory = this.categories[index].title;
-    this.getNewPosts(this.categories[index].category_id);
+  onSegmentChange(categoryTitle) {
+    this.selectedCategory = categoryTitle;
+    this.setActivePosts(categoryTitle);
+    // this.activePosts = this.forumPosts
   }
 
   getNewPosts(categoryId) {
     this.forumService.getPostsByCategoryId(categoryId).then(PostResponse => {
       this.activePosts = PostResponse.posts;
     })
-    .catch(err => console.log(JSON.stringify(err)));
+    this.categories.forEach( category => {
+      this.forumService.getPostsByCategoryId(category.category_id).then(PostResponse => {
+        const obj = {};
+        const catTitle = category.title;
+        const posts = PostResponse.posts;
+        obj[catTitle] = posts;
+        this.forumPosts.push(obj)
+      })
+      .catch(err => console.log(JSON.stringify(err)));
+    })
   }
   goToPostDetails(postId) {
     console.log(postId);
+  }
+  setActivePosts(categoryTitle) {
+    let posts = this.forumPosts.find(value => {
+      return value.hasOwnProperty(categoryTitle);
+    });
+    this.activePosts = posts[categoryTitle];
+  }
+  testbtn(){
+    console.log(JSON.stringify(this.forumPosts));
+    // this.forumPosts.map(value => {
+    //   console.log(JSON.stringify(value));
+    // })
   }
 
 }

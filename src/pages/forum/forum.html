@@ -10,7 +10,7 @@
   </ion-navbar>
   <ion-toolbar>
     <ion-segment [(ngModel)]="selectedCategory">
-      <ion-segment-button *ngFor="let category of categories; let i = index" value="{{category.title}}" (click)="onSegmentChange($event, i)">
+      <ion-segment-button *ngFor="let category of categories; let i = index" value="{{category.title}}" (click)="onSegmentChange(category.title)">
         {{category.title}}
       </ion-segment-button>
     </ion-segment>
@@ -19,6 +19,7 @@
 </ion-header>
 
 <ion-content>
+  <button ion-button (click)="testbtn()">new posts</button>
   <div class="post-card shadow-default" *ngFor="let post of activePosts; index as i" (click)="goToPostDetails(post.post_id)">
       <ion-grid>
         <ion-row>

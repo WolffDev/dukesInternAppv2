@@ -1,6 +1,6 @@
 import { Attendee } from './attendee.interface';
 export interface SingleEventResponse {
-	newtoken: string,
+	token: string,
 	attendeeAmount: number,
 	attendees: Attendee[]
 }

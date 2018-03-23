@@ -2,4 +2,11 @@ page-events {
 	.toolbar .searchbar-ios .searchbar-input {
 		background-color: color($colors, light)
 	}
+	.event-card {
+		background-color: rgba(24, 57, 35, .15);
+		.card-header,
+		.card-content {
+			color: color($colors, light);
+		}
+	}
 }

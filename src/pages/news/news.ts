@@ -47,6 +47,8 @@ export class NewsPage {
     this.newsService.getNews()
       .then(NewsResponse => {
         loading.dismiss();
+        this.storageService.setToken(NewsResponse.token);
+        this.authService.setToken(NewsResponse.token);
         this.news = NewsResponse.news;
       })
       .catch(err => {

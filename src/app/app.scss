@@ -117,6 +117,10 @@ ion-content {
 [icon-start] ion-icon {
 	line-height: 1.4em;
 }
+.bar-button-default-ios,
+.bar-button-default-md {
+	color: color($colors, light);
+}
 
 // Refresher
 .has-refresher > .scroll-content {

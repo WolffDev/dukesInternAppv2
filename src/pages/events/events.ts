@@ -1,13 +1,11 @@
+import { EventsResponse } from './../../models/events/eventsResponse.interface.ts';
+import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { EventServiceProvider } from '../../providers/event-service/event-service';
 import { SingleEvent } from '../../models/events/singleEvent.interface';
 
-
-// interface eventsResponse {
-//   newToken: string,
-//   events: singleEvent[]
-// }
 
 @IonicPage()
 @Component({
@@ -25,16 +23,19 @@ export class EventsPage {
     public modalCtrl: ModalController, 
     public viewCtrl: ViewController, 
     private loadingCtrl: LoadingController, 
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private authService: AuthServiceProvider,
+    private storageService: StorageServiceProvider
   ) {
 
   }
 
   ngOnInit() {
-    this.getEvents();
+    
   }
 
   ionViewDidLoad() {
+    this.getEvents();
   }
 
   getEvents() {
@@ -43,9 +44,11 @@ export class EventsPage {
     });
     loading.present();
     this.eventService.getEvents()
-      .then(eventsResponse => {
+      .then(EventsResponse => {
         loading.dismiss();
-        this.events = eventsResponse.events;
+        this.events = EventsResponse.events;
+        this.authService.setToken(EventsResponse.token);
+        this.storageService.setToken(EventsResponse.token);
         this.newEvents = this.events.slice();
       })
       .catch( err => {
@@ -53,7 +56,7 @@ export class EventsPage {
         const alert = this.alertCtrl.create({
           title: 'Fejl ved indlæsning',
           message: err.message,
-          buttons: ['Træls']
+          buttons: ['Prøv igen']
         });
         alert.present();
       })
@@ -82,6 +85,9 @@ export class EventsPage {
     let modal = this.modalCtrl.create('ModalPage', user);
     modal.present();
     // this.navCtrl.push('EventDetailPage')
+  }
+  goToEventDetail(eventId, event) {
+    this.navCtrl.push('EventDetailPage', {eventId, event});
   }
 
 }

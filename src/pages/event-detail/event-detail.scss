@@ -1,3 +1,22 @@
 page-event-detail {
-
+	.list-ios > .item-block:first-child,
+	.list-md > .item-block:first-child {
+		border-top: none;
+	}
+	.spinner-container {
+		width: 100%;
+		text-align: center;
+		padding: 10px;
+	}
+	.item-ios.activated,
+	.item-md.activated {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+	.toolbar .searchbar-ios .searchbar-input,
+	.toolbar .searchbar-md .searchbar-input {
+		background-color: color($colors, light);
+	}
+	.small-details {
+		font-size: 0.8em;
+	}
 }

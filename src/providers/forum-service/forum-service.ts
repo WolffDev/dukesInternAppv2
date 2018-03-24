@@ -1,3 +1,4 @@
+import { SavePost } from './../../models/forum/savePost.interface';
 import { PostResponse } from './../../models/forum/postResponse.interface';
 import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
 import { HttpClient } from '@angular/common/http';
@@ -27,7 +28,7 @@ export class ForumServiceProvider {
     return this.http.get<PostResponse>(this.postUrl(categoryId)).toPromise();
   }
   saveNewPost(data) {
-    
+    return this.http.post<SavePost>(this.postUrl(), data).toPromise()
   }
   set postState(data: boolean) {
     this._newPost = data;

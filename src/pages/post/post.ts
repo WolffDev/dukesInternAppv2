@@ -3,7 +3,7 @@ import { AuthServiceProvider } from './../../providers/auth-service/auth-service
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -24,8 +24,8 @@ export class PostPage {
     private forumService: ForumServiceProvider,
     public formBuilder: FormBuilder,
     private loadingCtrl: LoadingController,
-    private authService: AuthServiceProvider,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
 
   ) {
     this.newPost = this.forumService.postState;
@@ -33,8 +33,8 @@ export class PostPage {
     console.log(JSON.stringify(this.postData));
 
     this.postForm = this.formBuilder.group({
-      title: [this.newPost ? '' : 'NEJ', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      body: [this.newPost ? '' : 'NEJ', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      title: [this.newPost ? '' : 'NEJ', Validators.compose([Validators.maxLength(50), Validators.required])],
+      body: [this.newPost ? '' : 'NEJ', Validators.compose([Validators.maxLength(255), Validators.required])],
       category_id: [this.newPost ? '' : '1', Validators.required]
     })
   }
@@ -78,20 +78,49 @@ export class PostPage {
   }
 
   handlePost() {
-    // let loading = this.loadingCtrl.create({
-    //   content: this.newPost ? 'Opretter indlæg' : 'Opdaterer indlæg'
-    // })
-    // loading.present();
-    // if(!this.postForm.valid) {
-    //   loading.dismiss()
-    //   this.submitAttempt = true;
-    //   console.log('NOT VALID');
-    //   return;
-    // }
+    let loading = this.loadingCtrl.create({
+      content: this.newPost ? 'Opretter indlæg' : 'Opdaterer indlæg'
+    })
+    loading.present();
+    if(!this.postForm.valid) {
+      loading.dismiss()
+      this.submitAttempt = true;
+      console.log('NOT VALID');
+      return;
+    } else {
+      // TODO: handle either update or post, depending on state
+      this.forumService.saveNewPost(Object.assign(this.postForm.value, {user_name: this.postData.name}))
+        .then( result => {
+          loading.dismiss();
+          this.confirmedExit = true;
+          let toast = this.toastCtrl.create({
+            message: this.newPost ? 'Indlæg oprettet' : 'Indlæg opdateret',
+            duration: 10000,
+            position: 'top',
+            showCloseButton: true,
+            closeButtonText: 'Luk'
+          });
+          toast.present();
+          this.navCtrl.pop()
+        })
+        .catch(err => {
+          loading.dismiss();
+          this.confirmedExit = true;
+          let toast = this.toastCtrl.create({
+            message: err.message,
+            duration: 10000,
+            position: 'top',
+            showCloseButton: true,
+            closeButtonText: 'Luk'
+          });
+          toast.present();
+          this.navCtrl.pop();
+        })
+    }
     // TODO: create observable to subscribe on new/update post, in order to getNewPosts
     console.log(JSON.stringify(this.postData.name))
     console.log(this.postForm.value.title, this.postForm.value.body);
-    console.log(Object.assign(this.postForm.value, {user_name: this.postData.name}));
+    console.log();
   }
   test(){
     console.log(this.postForm.value.title.length);

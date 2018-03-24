@@ -36,7 +36,6 @@ export class ForumPage {
   }
   ionViewDidLoad() {
     this.getCategories();
-    console.log('#### FORUM VIEW LOADED ####');
   }
   getCategories() {
     let loading = this.loadingCtrl.create({
@@ -62,7 +61,6 @@ export class ForumPage {
   onSegmentChange(categoryTitle) {
     this.selectedCategory = categoryTitle;
     this.setActivePosts(categoryTitle);
-    console.log(JSON.stringify(this.activePosts))
   }
 
   getNewPosts(categoryId) {

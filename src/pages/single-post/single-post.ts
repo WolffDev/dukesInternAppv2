@@ -4,6 +4,7 @@ import { PostComment } from './../../models/forum/postComment.interface';
 import { Post } from './../../models/forum/post.interface';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import * as daLocale from 'date-fns/locale/da/index.js'
 
 @IonicPage()
 @Component({
@@ -16,15 +17,19 @@ export class SinglePostPage {
   public postData: Post;
   public comments: PostComment[];
 
+  public i18nOptions = {
+    locale: daLocale
+  }
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public forumService: ForumServiceProvider
   ) {
+    this.postData = this.navParams.data;
   }
   
   ionViewDidLoad() {
-    this.postData = this.navParams.data;
     this.getComments();
   }
 

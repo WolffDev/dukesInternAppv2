@@ -1,17 +1,36 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Indlæg</ion-title>
   </ion-navbar>
   <ion-toolbar>
-
+    <ion-row>
+      <ion-col col-3>
+        <avatar name="{{postData.user_name}}" displayType="circle" size="75"></avatar>
+      </ion-col>
+      <ion-col col-9 ion-text color="light">
+        <h3>{{postData.title}}</h3>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<div class="post-container">
+  <ion-row class="post-content">
+    <ion-col>
+      {{postData.body}}
+    </ion-col>
+  </ion-row>
+  <ion-row class="post-author">
+    <ion-col>
+      @{{postData.user_name}}
+      <br>
+      {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
+    </ion-col>
+  </ion-row>
+</div>
 </ion-content>
 
 <ion-footer>

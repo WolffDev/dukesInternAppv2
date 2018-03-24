@@ -55,8 +55,8 @@ export class EventsPage {
         loading.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Fejl ved indlæsning',
-          message: err.message,
-          buttons: ['Prøv igen']
+          message: 'Der er ingen tilmeldinger til dette event',
+          buttons: ['Ok']
         });
         alert.present();
       })

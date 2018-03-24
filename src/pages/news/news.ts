@@ -55,8 +55,8 @@ export class NewsPage {
         loading.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Fejl ved indlæsning',
-          message: JSON.stringify(err),
-          buttons: ['Træls']
+          message: JSON.stringify(err.message),
+          buttons: ['Prøv igen']
         });
         alert.present();
       })

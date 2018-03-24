@@ -1,3 +1,4 @@
+import { ForumServiceProvider } from './../providers/forum-service/forum-service';
 import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -46,6 +47,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
     AuthServiceProvider,
     StorageServiceProvider,
     NativePageTransitions,
+    ForumServiceProvider
   ]
 })
 export class AppModule {}

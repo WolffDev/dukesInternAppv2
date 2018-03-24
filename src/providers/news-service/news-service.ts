@@ -16,8 +16,4 @@ export class NewsServiceProvider {
     return this.http.get<NewsResponse>('http://dukesdenmark.dk:50080/api/v1/news').toPromise();
   }
 
-  // async getSingleNews(id) {
-  //   return await this.http.get(`${this.rootUrl}/${this.news}/${id}`);
-  // }
-
 }

@@ -42,13 +42,17 @@ $colors: (
   bottomNav:    #212121,
   actColor:     #e5bd47,
   fingerPrint:  rgba(8, 8, 8, 0.4),
+  darkGreen:  rgba(28,51,22,.16),
+  lightGreen:  rgba(43, 77, 34, 0.728),
+  fabColor:     rgba(206, 159, 19, 0.92),
 );
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$segment-button-ios-text-color: map-get($colors, fingerPrint);
+$segment-button-ios-background-color-activated: map-get($colors, light);
 
 
 
@@ -56,6 +60,8 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 $item-md-detail-push-show: true;
+$segment-button-md-text-color-activated: map-get($colors, light);
+$segment-button-md-border-color-activated: map-get($colors, light);
 
 
 

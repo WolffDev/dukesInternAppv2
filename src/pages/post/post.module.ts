@@ -9,5 +9,7 @@ import { PostPage } from './post';
   imports: [
     IonicPageModule.forChild(PostPage),
   ],
+  providers: [
+  ]
 })
 export class PostPageModule {}

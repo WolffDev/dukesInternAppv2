@@ -5,7 +5,7 @@ import { AuthServiceProvider } from './../../providers/auth-service/auth-service
 import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Category } from './../../models/forum/category.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import * as daLocale from 'date-fns/locale/da/index.js'
 
@@ -14,7 +14,7 @@ import * as daLocale from 'date-fns/locale/da/index.js'
   selector: 'page-forum',
   templateUrl: 'forum.html',
 })
-export class ForumPage implements OnInit {
+export class ForumPage {
 
   public forumPosts = [];
   public categories: Category[];
@@ -90,7 +90,8 @@ export class ForumPage implements OnInit {
     this.activePosts = posts[categoryTitle];
   }
   addNewPost() {
-    this.navCtrl.push('PostPage', {this:'that'});
+    this.forumService.postState = true;
+    this.navCtrl.push('PostPage', Object.assign(this.authService.getUser(), {categories: this.categories}));
   }
 
 }

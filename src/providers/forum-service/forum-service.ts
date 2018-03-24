@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ForumServiceProvider {
 
+  private _newPost: boolean;
+
   private categoryUrl(id = '') {
     const url = `http://dukesdenmark.dk:50080/api/v1/category/${id}`;
     return url;
@@ -24,5 +26,15 @@ export class ForumServiceProvider {
   getPostsByCategoryId(categoryId) {
     return this.http.get<PostResponse>(this.postUrl(categoryId)).toPromise();
   }
+  saveNewPost(data) {
+    
+  }
+  set postState(data: boolean) {
+    this._newPost = data;
+  }
+  get postState() {
+    return this._newPost;
+  }
+
 
 }

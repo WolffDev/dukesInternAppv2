@@ -1,3 +1,4 @@
+import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { SavePost } from './../../models/forum/savePost.interface';
 import { PostResponse } from './../../models/forum/postResponse.interface';
 import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
@@ -17,6 +18,11 @@ export class ForumServiceProvider {
     const url = `http://dukesdenmark.dk:50080/api/v1/posts?category=${+id}`;
     return url;
   }
+  private getCommentsUrl(id) {
+    const url = `http://dukesdenmark.dk:50080/api/v1//comment?post_id=${+id}`;
+    return url;
+  }
+
   constructor(public http: HttpClient) {
 
   }
@@ -28,7 +34,10 @@ export class ForumServiceProvider {
     return this.http.get<PostResponse>(this.postUrl(categoryId)).toPromise();
   }
   saveNewPost(data) {
-    return this.http.post<SavePost>(this.postUrl(), data).toPromise()
+    return this.http.post<SavePost>(this.postUrl(), data).toPromise();
+  }
+  getPostComments(postId) {
+    return this.http.get<PostCommentsResponse>(this.getPostComments(postId)).toPromise();
   }
   set postState(data: boolean) {
     this._newPost = data;

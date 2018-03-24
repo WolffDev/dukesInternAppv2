@@ -122,8 +122,4 @@ export class PostPage {
     console.log(this.postForm.value.title, this.postForm.value.body);
     console.log();
   }
-  test(){
-    console.log(this.postForm.value.title.length);
-  }
-
 }

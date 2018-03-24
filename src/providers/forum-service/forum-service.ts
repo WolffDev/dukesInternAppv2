@@ -18,7 +18,7 @@ export class ForumServiceProvider {
     const url = `http://dukesdenmark.dk:50080/api/v1/posts?category=${+id}`;
     return url;
   }
-  private getCommentsUrl(id) {
+  private postCommentsUrl(id) {
     const url = `http://dukesdenmark.dk:50080/api/v1//comment?post_id=${+id}`;
     return url;
   }
@@ -37,7 +37,7 @@ export class ForumServiceProvider {
     return this.http.post<SavePost>(this.postUrl(), data).toPromise();
   }
   getPostComments(postId) {
-    return this.http.get<PostCommentsResponse>(this.getPostComments(postId)).toPromise();
+    return this.http.get<PostCommentsResponse>(this.postCommentsUrl(postId)).toPromise();
   }
   set postState(data: boolean) {
     this._newPost = data;

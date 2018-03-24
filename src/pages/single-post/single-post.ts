@@ -1,3 +1,4 @@
+import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { PostComment } from './../../models/forum/postComment.interface';
 import { Post } from './../../models/forum/post.interface';
@@ -24,8 +25,15 @@ export class SinglePostPage {
   
   ionViewDidLoad() {
     this.postData = this.navParams.data;
+    this.getComments();
+  }
+
+  getComments() {
     this.forumService.getPostComments(this.postData.post_id)
-    console.log('ionViewDidLoad SinglePostPage');
+      .then(PostCommentsResponse => {
+        this.comments = PostCommentsResponse.comments;
+      })
+      .catch(err => console.log(err));
   }
 
 }

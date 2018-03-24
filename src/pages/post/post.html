@@ -25,7 +25,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-label>Kategory</ion-label>
+            <ion-label>Kategori</ion-label>
             <ion-select interface="popover" formControlName="category_id" required>
               <ion-option *ngFor="let category of postData.categories" value="{{category.category_id}}">
                 {{category.title}}
@@ -43,7 +43,5 @@
       <button ion-button block color="actColor" (click)="handlePost()" [disabled]="!postForm.valid">
         {{newPost ? 'Opret indlæg' : 'Opdater indlæg'}}
       </button>
-      <button (click)="test()">test</button>
-      
   </div>
 </ion-content>

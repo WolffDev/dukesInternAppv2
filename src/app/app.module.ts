@@ -24,7 +24,8 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
-      backButtonText: 'Tilbage'
+      backButtonText: 'Tilbage',
+      tabsHideOnSubPages: true
     }),
     AvatarModule.forRoot(),
   ],

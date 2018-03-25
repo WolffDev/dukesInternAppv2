@@ -16,6 +16,7 @@ import * as daLocale from 'date-fns/locale/da/index.js'
 })
 export class ForumPage {
 
+  public loggedInUser;
   public forumPosts = [];
   public categories: Category[];
   public activePosts: Post[];
@@ -33,6 +34,7 @@ export class ForumPage {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController
   ) {
+    this.loggedInUser = this.authService.getUser()
   }
   ionViewDidLoad() {
     this.getCategories();
@@ -78,11 +80,10 @@ export class ForumPage {
       .catch(err => console.log(JSON.stringify(err)));
     })
   }
-  goToPostDetails(postId, post) {
+  goToPostDetails(postId) {
     let postIndex = this.activePosts.findIndex(post => {
       return post.post_id == postId;
     });
-    console.log(post);
     this.navCtrl.push('SinglePostPage', this.activePosts[postIndex]);
   }
   setActivePosts(categoryTitle) {
@@ -98,6 +99,18 @@ export class ForumPage {
   async updateForum(refresher) {
     await this.getCategories();
     refresher.complete()
+  }
+  onEditPostClick(post: Post) {
+    this.editPost(post)
+  }
+  editPost(post: Post) {
+    console.log('POST EDIT');
+  }
+  onRemovePostClick(post: Post) {
+    this.removePost(post);
+  }
+  removePost(post: Post) {
+    console.log('REMOVE POST');
   }
 
 }

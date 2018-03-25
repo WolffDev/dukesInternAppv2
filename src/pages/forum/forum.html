@@ -29,27 +29,47 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div class="post-card shadow-default" *ngFor="let post of activePosts; index as i" (click)="goToPostDetails(post.post_id, post)">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-3 class="author-avatar">
-          <avatar name="{{post.user_name}}" displayType="circle" size="65"></avatar>
-        </ion-col>
-        <ion-col col-9>
-          <ion-row class="post-title">
-            <h3>
-              {{post.title}}
-            </h3>
-          </ion-row>
-          <ion-row class="post-author">
-            @{{post.user_name}}
-            <br>
-            {{post.created | dfnsDistanceInWordsToNow: i18nOptions }} siden
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+  <ion-list no-lines>
+    <ion-item-sliding *ngFor="let post of activePosts" class="comment shadow-default">
+      <ion-item text-wrap>
+        <ion-row>
+          <ion-col class="post-title">
+            <h3>{{post.title}}</h3>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-10 class="post-body">
+            {{post.body}}
+          </ion-col>
+          <ion-col col-2 class="post-btn">
+            <button ion-button icon-only clear (click)="goToPostDetails(post.post_id)" large>
+              <ion-icon name="arrow-dropright" color="light"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="post-author">
+          @{{post.user_name}}
+          <br>
+          {{post.created | dfnsFormat : 'DD/MM/YYYY' : i18nOptions }}, {{post.created | dfnsDistanceInWordsToNow : i18nOptions}} siden
+        </ion-row>
+
+      </ion-item>
+
+      <ion-item-options side="right" *ngIf="loggedInUser.userId == post.user_id || loggedInUser.auth_level >= 3">
+        <button ion-button color="fabColor" icon-start (click)="onEditPostClick(post)">
+          Rediger
+        </button>
+        <button ion-button color="danger" icon-end (click)="onRemovePostClick(post)">
+          Fjern
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
   <ion-fab bottom right>
     <button ion-fab large color="fabColor" class="shadow-default" (click)="addNewPost()">
       <ion-icon name="add"></ion-icon>

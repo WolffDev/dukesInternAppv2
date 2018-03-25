@@ -14,6 +14,9 @@ import * as daLocale from 'date-fns/locale/da/index.js'
 
 export class SinglePostPage {
   
+  public maxWordCount: number = 150;
+  public wordCount: number = 150;
+  public newComment: string;
   public postData: Post;
   public comments: PostComment[];
 
@@ -39,6 +42,13 @@ export class SinglePostPage {
         this.comments = PostCommentsResponse.comments;
       })
       .catch(err => console.log(err));
+  }
+
+  test() {
+    console.log(this.newComment);
+  }
+  doWordCount(value) {
+    this.wordCount = this.maxWordCount - value.length;
   }
 
 }

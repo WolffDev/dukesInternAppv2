@@ -122,4 +122,7 @@ export class PostPage {
     console.log(this.postForm.value.title, this.postForm.value.body);
     console.log();
   }
+  test($event) {
+    console.log($event, $event.value);
+  }
 }

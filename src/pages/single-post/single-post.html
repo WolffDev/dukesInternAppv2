@@ -7,14 +7,13 @@
       <ion-col col-3>
         <avatar name="{{postData.user_name}}" displayType="circle" size="75"></avatar>
       </ion-col>
-      <ion-col col-9 ion-text color="light">
+      <ion-col col-9 ion-text color="light" class="post-title">
         <h3>{{postData.title}}</h3>
       </ion-col>
     </ion-row>
   </ion-toolbar>
 
 </ion-header>
-
 
 <ion-content padding>
 <div class="post-container">
@@ -36,6 +35,13 @@
 <ion-footer>
   test
   <ion-toolbar>
-    sf
+    <ion-item no-lines>
+      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="150" (ionChange)=doWordCount($event.value)></ion-input>
+      <!-- <ion-icon item-end name="send" color="darkGreen" (click)="test()"></ion-icon> -->
+      <span item-end ion-text color="danger">{{wordCount}}</span>
+      <button ion-button icon-only item-end (click)="test()" [disabled]="!newComment" clear>
+          <ion-icon name="send" style="font-size:24px;"></ion-icon>
+        </button>
+    </ion-item>
   </ion-toolbar>
 </ion-footer>

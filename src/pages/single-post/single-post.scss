@@ -1,7 +1,10 @@
 page-single-post {
 	ion-toolbar {
+		.post-title {
+			margin: auto 0;
+		}
 		h3 {
-			margin-top: 0;
+			margin: 0;
 		}
 	}
 }

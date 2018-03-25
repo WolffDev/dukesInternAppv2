@@ -4,6 +4,9 @@ page-post {
 	.list-ios .item-input:last-child {
 		border: none;
 	}
+	textarea {
+		min-height: 150px;
+	}
 	.item-ios,
 	.item-md {
 		padding-left: 0;

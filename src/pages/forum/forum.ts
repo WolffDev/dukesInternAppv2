@@ -36,6 +36,9 @@ export class ForumPage {
     private toastCtrl: ToastController
   ) {
     this.loggedInUser = this.authService.getUser()
+    this.forumService.refresh.subscribe(value => {
+      if(value) this.getCategories();
+    })
   }
   ionViewDidLoad() {
     this.getCategories();

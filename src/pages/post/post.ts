@@ -101,6 +101,7 @@ export class PostPage {
             closeButtonText: 'Luk'
           });
           toast.present();
+          this.forumService.refresh.next(true);
           this.navCtrl.pop()
         })
         .catch(err => {
@@ -146,6 +147,7 @@ export class PostPage {
             closeButtonText: 'Luk'
           });
           toast.present();
+          this.forumService.refresh.next(true);
           this.navCtrl.pop()
         })
         .catch(err => {

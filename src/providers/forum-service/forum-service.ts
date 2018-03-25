@@ -6,12 +6,14 @@ import { PostResponse } from './../../models/forum/postResponse.interface';
 import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ForumServiceProvider {
 
   private _newPost: boolean;
 
+  public refresh = new Subject<boolean>();
   private categoryUrl(id = '') {
     const url = `http://dukesdenmark.dk:50080/api/v1/category/${id}`;
     return url;

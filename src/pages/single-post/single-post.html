@@ -19,7 +19,7 @@
 <div class="post-container">
   <ion-row class="post-content">
     <ion-col>
-      {{postData.body}}
+      <p>{{postData.body}}</p>
     </ion-col>
   </ion-row>
   <ion-row class="post-author">
@@ -30,14 +30,22 @@
     </ion-col>
   </ion-row>
 </div>
+
+<div class="comments-container">
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div class="comment">
+    test
+  </div>
+</div>
+
 </ion-content>
 
 <ion-footer>
-  test
   <ion-toolbar>
     <ion-item no-lines>
-      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="150" (ionChange)=doWordCount($event.value)></ion-input>
-      <!-- <ion-icon item-end name="send" color="darkGreen" (click)="test()"></ion-icon> -->
+      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="101" (ionChange)=doWordCount($event.value)></ion-input>
       <span item-end ion-text color="danger">{{wordCount}}</span>
       <button ion-button icon-only item-end (click)="test()" [disabled]="!newComment" clear>
           <ion-icon name="send" style="font-size:24px;"></ion-icon>

@@ -14,9 +14,11 @@ import * as daLocale from 'date-fns/locale/da/index.js'
 
 export class SinglePostPage {
   
-  public maxWordCount: number = 150;
-  public wordCount: number = 150;
+  public searching: boolean = true;
+  public maxWordCount: number = 100;
+  public wordCount: number = 100;
   public newComment: string;
+
   public postData: Post;
   public comments: PostComment[];
 

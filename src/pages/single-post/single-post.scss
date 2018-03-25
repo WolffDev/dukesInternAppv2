@@ -7,4 +7,15 @@ page-single-post {
 			margin: 0;
 		}
 	}
+	p {
+		font-size: 1.1em;
+	}
+	.post-author {
+		font-size: 0.9em;
+	}
+	.spinner-container {
+		width: 100%;
+		text-align: center;
+		padding: 10px;
+	}
 }

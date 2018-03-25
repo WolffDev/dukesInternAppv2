@@ -32,21 +32,61 @@
 </div>
 
 <div class="comments-container">
-  <h3>Kommentarer:</h3>
+  <!-- <h3>Kommentarer:</h3> -->
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
     <p>Henter kommentare</p>
   </div>
-  <div class="comment" ion-row *ngFor="let comment of comments">
+
+  <ion-list>
+    <ion-list-header>Kommentarer:</ion-list-header>
+
+    <ion-item-sliding *ngFor="let comment of comments" class="comment">
+      <ion-item>
+          <avatar name="{{comment.user_name}}" displayType="circle" size="50" item-start></avatar>
+          <p class="comment-text">
+            {{comment.text}} - {{comment.comment_id}}
+          </p>
+          <p class="comment-author">
+            @{{comment.user_name}}, {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
+          </p>
+      </ion-item>
+      <ion-item-options side="right" *ngIf="loggedInUser.userId == comment.user_id || loggedInUser.auth_level >= 3">
+        <button ion-button color="light" icon-start>
+          <ion-icon name="more"></ion-icon>
+          Rediger
+        </button>
+        <button ion-button color="danger" icon-end (click)="onRemoveCommentClick(comment.user_id, comment.comment_id)">
+          <ion-icon name="trash"></ion-icon>
+          Fjern
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <!-- <div class="comment" ion-row *ngFor="let comment of comments">
     <avatar name="{{comment.user_name}}" displayType="circle" size="50" ion-col col-2></avatar>
-    <div ion-col col-10>
+    <div ion-col col-8>
       {{comment.text}}
       <br>
       <p class="comment-author">
         @{{comment.user_name}}, {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
       </p>
     </div>
-  </div>
+    <div ion-col col-2>
+      <ion-buttons>
+        <button ion-button icon-only clear>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button ion-button icon-only clear>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+
+      </ion-buttons>
+    </div>
+  </div> -->
+
 </div>
 
 </ion-content>

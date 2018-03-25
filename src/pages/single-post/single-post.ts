@@ -14,7 +14,8 @@ import * as daLocale from 'date-fns/locale/da/index.js'
 })
 
 export class SinglePostPage {
-  
+
+  public loggedInUser;
   public searching: boolean = false;
   public maxWordCount: number = 100;
   public wordCount: number = 100;
@@ -36,6 +37,7 @@ export class SinglePostPage {
     private toastCtrl: ToastController
   ) {
     this.postData = this.navParams.data;
+    this.loggedInUser = this.authService.getUser();
   }
   
   ionViewDidLoad() {
@@ -54,10 +56,9 @@ export class SinglePostPage {
 
   postNewComment() {
     this.postingNewComment = true;
-    let user = this.authService.getUser();
     let comment = Object.assign({}, {
       text: this.newComment,
-      user_name: user.name
+      user_name: this.loggedInUser.name
     });
     this.newComment = '';
     this.forumService.postNewComment(this.postData.post_id, comment)
@@ -77,6 +78,9 @@ export class SinglePostPage {
   }
   doWordCount(value) {
     this.wordCount = this.maxWordCount - value.length;
+  }
+  onRemoveCommentClick(userId, commentId) {
+
   }
 
 }

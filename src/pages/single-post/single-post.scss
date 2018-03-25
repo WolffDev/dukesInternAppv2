@@ -24,9 +24,24 @@ page-single-post {
 		.comment {
 			margin-bottom: 10px;
 		}
-		.comment-author {
+		p.comment-text {
+			color: color($colors, light);
+		}
+		p.comment-author {
 			padding-top: 5px;
 			font-size: 0.7em;
+			color: color($colors, light);
 		}
+	}
+	.list-ios ion-item-sliding,
+	.list-md ion-item-sliding {
+		background-color: color($colors, mainbg);
+		// background-color: transparent;
+	}
+	.list-ios > .item-block:last-child, 
+	.list-ios > .item-wrapper:last-child .item-block,
+	.list-md > .item-block:last-child, 
+	.list-md > .item-wrapper:last-child .item-block {
+		border-bottom: none;
 	}
 }

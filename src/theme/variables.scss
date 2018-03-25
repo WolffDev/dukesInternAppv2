@@ -45,6 +45,7 @@ $colors: (
   darkGreen:  rgba(28,51,22,.16),
   lightGreen:  rgba(43, 77, 34, 0.728),
   fabColor:     rgba(206, 159, 19, 0.92),
+  mainbg:       #185a22,
 );
 
 
@@ -53,7 +54,6 @@ $colors: (
 // iOS only Sass variables can go here
 $segment-button-ios-text-color: map-get($colors, fingerPrint);
 $segment-button-ios-background-color-activated: map-get($colors, light);
-
 
 
 // App Material Design Variables

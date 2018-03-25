@@ -67,16 +67,12 @@ export class SinglePostPage {
       .then(result => {
         this.postingNewComment = false;
         this.getComments();
-        let toast = this.toastCtrl.create({
-          message: 'Kommentar oprettet',
-          duration: 3000,
-          position: 'top',
-          showCloseButton: true,
-          closeButtonText: 'Luk'
-        });
-        toast.present();
+        this.doToast('Kommentar oprettet');
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        this.doToast('Noget gik galt, prøv igen');
+        console.log(err);
+      })
   }
   doWordCount(value) {
     this.wordCount = this.maxWordCount - value.length;
@@ -107,16 +103,23 @@ export class SinglePostPage {
     this.forumService.removeComment(commentId)
     .then(result => {
       this.getComments();
-      let toast = this.toastCtrl.create({
-        message: 'Kommentar fjernet',
-        duration: 3000,
-        position: 'top',
-        showCloseButton: true,
-        closeButtonText: 'Luk'
-      });
-      toast.present();
+      this.doToast('Kommentar fjernet')
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      this.doToast('Noget gik galt, prøv igen')
+      console.log(err);
+    })
+  }
+
+  doToast(message: string, duration: number = 3000, position: string = 'top') {
+    let toast = this.toastCtrl.create({
+      message,
+      duration,
+      position: 'top',
+      showCloseButton: true,
+      closeButtonText: 'Luk'
+    });
+    toast.present();
   }
 
 

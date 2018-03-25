@@ -94,8 +94,8 @@
 <ion-footer>
   <ion-toolbar>
     <ion-item no-lines>
-      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="100" (ionChange)=doWordCount($event.value) [disabled]="postingNewComment"></ion-input>
-      <span item-end ion-text color="danger">{{wordCount}}</span>
+      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="100" (ionChange)=doWordCount($event.value) [disabled]="postingNewComment" clearInput></ion-input>
+      <span item-end ion-text color="dark">{{wordCount}}</span>
       <button ion-button icon-only item-end (click)="postNewComment()" [disabled]="!newComment" clear>
           <ion-icon name="send"></ion-icon>
         </button>

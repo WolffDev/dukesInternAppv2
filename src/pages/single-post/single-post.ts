@@ -47,6 +47,7 @@ export class SinglePostPage {
 
   getComments() {
     this.searching = true;
+    this.comments = [];
     this.forumService.getPostComments(this.postData.post_id)
       .then(PostCommentsResponse => {
         this.comments = PostCommentsResponse.comments;

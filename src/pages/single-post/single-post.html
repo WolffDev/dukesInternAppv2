@@ -48,7 +48,7 @@
             {{comment.text}}
           </p>
           <p class="comment-author">
-            @{{comment.user_name}}, {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
+            @{{comment.user_name}}, {{comment.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
           </p>
       </ion-item>
       <ion-item-options side="right" *ngIf="loggedInUser.userId == comment.user_id || loggedInUser.auth_level >= 3">

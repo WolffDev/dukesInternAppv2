@@ -12,25 +12,25 @@
     <p *ngIf="submitAttempt" style="color: #ea6153;">Udfyld alle felter</p>
     <form [formGroup]="postForm">
       <ion-list>
+        
+        <ion-item>
+          <ion-label>Kategori</ion-label>
+          <ion-select interface="popover" formControlName="category_id" required>
+            <ion-option *ngFor="let category of postData.categories" value="{{category.category_id}}">
+              {{category.title}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
 
           <ion-item>
             <ion-label>Titel</ion-label>
-            <ion-input required type="text" formControlName="title" required>
+            <ion-input required type="text" formControlName="title" required clearInput>
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label>Tekst</ion-label>
-            <ion-input formControlName="body" required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Kategory</ion-label>
-            <ion-select interface="popover" formControlName="category_id" required>
-              <ion-option *ngFor="let category of postData.categories" value="{{category.category_id}}">
-                {{category.title}}
-              </ion-option>
-            </ion-select>
+            <ion-textarea formControlName="body" required></ion-textarea>
           </ion-item>
 
           <ion-item>
@@ -43,7 +43,5 @@
       <button ion-button block color="actColor" (click)="handlePost()" [disabled]="!postForm.valid">
         {{newPost ? 'Opret indlæg' : 'Opdater indlæg'}}
       </button>
-      <button (click)="test()">test</button>
-      
   </div>
 </ion-content>

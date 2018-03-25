@@ -1,0 +1,47 @@
+page-single-post {
+	ion-toolbar {
+		.post-title {
+			margin: auto 0;
+		}
+		h3 {
+			margin: 0;
+		}
+	}
+	p {
+		font-size: 1.1em;
+	}
+	.post-author {
+		font-size: 0.9em;
+	}
+	.spinner-container {
+		width: 100%;
+		text-align: center;
+		padding: 10px;
+	}
+
+	.comments-container {
+		margin-top: 20px;
+		.comment {
+			margin-bottom: 10px;
+		}
+		p.comment-text {
+			color: color($colors, light);
+		}
+		p.comment-author {
+			padding-top: 5px;
+			font-size: 0.7em;
+			color: color($colors, light);
+		}
+	}
+	.list-ios ion-item-sliding,
+	.list-md ion-item-sliding {
+		background-color: color($colors, mainbg);
+		// background-color: transparent;
+	}
+	.list-ios > .item-block:last-child, 
+	.list-ios > .item-wrapper:last-child .item-block,
+	.list-md > .item-block:last-child, 
+	.list-md > .item-wrapper:last-child .item-block {
+		border-bottom: none;
+	}
+}

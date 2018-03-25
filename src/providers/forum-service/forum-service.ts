@@ -1,3 +1,6 @@
+import { PostComment } from './../../models/forum/postComment.interface';
+import { SaveComment } from './../../models/forum/saveComment.interface';
+import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { SavePost } from './../../models/forum/savePost.interface';
 import { PostResponse } from './../../models/forum/postResponse.interface';
 import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
@@ -17,6 +20,15 @@ export class ForumServiceProvider {
     const url = `http://dukesdenmark.dk:50080/api/v1/posts?category=${+id}`;
     return url;
   }
+  private postCommentsUrl(id) {
+    const url = `http://dukesdenmark.dk:50080/api/v1//comment?post_id=${+id}`;
+    return url;
+  }
+  private singleComment(id = 0) {
+    const url = `http://dukesdenmark.dk:50080/api/v1//comment/${+id}`;
+    return url;
+  }
+
   constructor(public http: HttpClient) {
 
   }
@@ -28,7 +40,19 @@ export class ForumServiceProvider {
     return this.http.get<PostResponse>(this.postUrl(categoryId)).toPromise();
   }
   saveNewPost(data) {
-    return this.http.post<SavePost>(this.postUrl(), data).toPromise()
+    return this.http.post<SavePost>(this.postUrl(), data).toPromise();
+  }
+  getPostComments(postId) {
+    return this.http.get<PostCommentsResponse>(this.postCommentsUrl(postId)).toPromise();
+  }
+  postNewComment(postId, data) {
+    return this.http.post<SaveComment>(this.postCommentsUrl(postId), data).toPromise();
+  }
+  removeComment(commentId) {
+    return this.http.delete(this.singleComment(commentId)).toPromise();
+  }
+  updateComment(commentId, data) {
+    return this.http.put(this.singleComment(commentId), data).toPromise();
   }
   set postState(data: boolean) {
     this._newPost = data;

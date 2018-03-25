@@ -1,0 +1,106 @@
+<ion-header>
+
+  <ion-navbar>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col col-3>
+        <avatar name="{{postData.user_name}}" displayType="circle" size="75"></avatar>
+      </ion-col>
+      <ion-col col-9 ion-text color="light" class="post-title">
+        <h3>{{postData.title}}</h3>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+<div class="post-container">
+  <ion-row class="post-content">
+    <ion-col>
+      <p>{{postData.body}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="post-author">
+    <ion-col>
+      @{{postData.user_name}}
+      <br>
+      {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
+    </ion-col>
+  </ion-row>
+</div>
+
+<div class="comments-container">
+  <!-- <h3>Kommentarer:</h3> -->
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+    <p>Henter kommentare</p>
+  </div>
+
+  <ion-list>
+    <ion-list-header>Kommentarer:</ion-list-header>
+
+    <ion-item-sliding *ngFor="let comment of comments" class="comment">
+      <ion-item>
+          <avatar name="{{comment.user_name}}" displayType="circle" size="50" item-start></avatar>
+          <p class="comment-text">
+            {{comment.text}}
+          </p>
+          <p class="comment-author">
+            @{{comment.user_name}}
+            <br>
+            {{comment.created | dfnsFormat : 'DD/MM/YYYY' : i18nOptions }}, {{comment.created | dfnsDistanceInWordsToNow : i18nOptions}} siden
+          </p>
+      </ion-item>
+      <ion-item-options side="right" *ngIf="loggedInUser.userId == comment.user_id || loggedInUser.auth_level >= 3">
+        <button ion-button color="fabColor" icon-start (click)="onEditCommentClick(comment)">
+          <!-- <ion-icon name="more"></ion-icon> -->
+          Rediger
+        </button>
+        <button ion-button color="danger" icon-end (click)="onRemoveCommentClick(comment.comment_id)">
+          <!-- <ion-icon name="trash"></ion-icon> -->
+          Fjern
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <!-- <div class="comment" ion-row *ngFor="let comment of comments">
+    <avatar name="{{comment.user_name}}" displayType="circle" size="50" ion-col col-2></avatar>
+    <div ion-col col-8>
+      {{comment.text}}
+      <br>
+      <p class="comment-author">
+        @{{comment.user_name}}, {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
+      </p>
+    </div>
+    <div ion-col col-2>
+      <ion-buttons>
+        <button ion-button icon-only clear>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button ion-button icon-only clear>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+
+      </ion-buttons>
+    </div>
+  </div> -->
+
+</div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item no-lines>
+      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="100" (ionChange)=doWordCount($event.value) [disabled]="postingNewComment" clearInput></ion-input>
+      <span item-end ion-text color="dark">{{wordCount}}</span>
+      <button ion-button icon-only item-end (click)="postNewComment()" [disabled]="!newComment" clear>
+          <ion-icon name="send"></ion-icon>
+        </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -36,7 +36,6 @@ export class ForumPage {
   }
   ionViewDidLoad() {
     this.getCategories();
-    console.log('#### FORUM VIEW LOADED ####');
   }
   getCategories() {
     let loading = this.loadingCtrl.create({
@@ -62,7 +61,6 @@ export class ForumPage {
   onSegmentChange(categoryTitle) {
     this.selectedCategory = categoryTitle;
     this.setActivePosts(categoryTitle);
-    // this.activePosts = this.forumPosts
   }
 
   getNewPosts(categoryId) {
@@ -81,7 +79,10 @@ export class ForumPage {
     })
   }
   goToPostDetails(postId) {
-    console.log(postId);
+    let postIndex = this.activePosts.findIndex(post => {
+      return post.post_id == postId;
+    });
+    this.navCtrl.push('SinglePostPage', this.activePosts[postIndex]);
   }
   setActivePosts(categoryTitle) {
     let posts = this.forumPosts.find(value => {

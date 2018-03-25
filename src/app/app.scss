@@ -90,9 +90,9 @@
 }
  
 ion-content {
-	background: #171413;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to bottom, #2C7744, #171413); 
-	background: linear-gradient(to bottom, #2C7744, #171413);
+	background: color($colors, mainbg) !important;  /* fallback for old browsers */
+	// background: -webkit-linear-gradient(to bottom, #2C7744, #171413); 
+	// background: linear-gradient(to bottom, #2C7744, #171413);
 	.item-ios,
 	.item-md {
 		background-color: inherit;
@@ -102,7 +102,7 @@ ion-content {
 }
 // Background image settings
 .global-background-image {
-	background: #171413;  /* fallback for old browsers */
+	// background: #365c3b;  /* fallback for old browsers */
 	background: -webkit-linear-gradient(to bottom, #2C7744, #171413); 
 	background: linear-gradient(to bottom, #2C7744, #171413);
 }

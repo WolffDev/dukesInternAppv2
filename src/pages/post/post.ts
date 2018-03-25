@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 export class PostPage {
 
   public newPost: boolean = false;
-  postData: PostData;
+  postData;
   postForm: FormGroup;
   submitAttempt: boolean = false;
   confirmedExit: boolean = false;
@@ -33,9 +33,9 @@ export class PostPage {
     console.log(JSON.stringify(this.postData));
 
     this.postForm = this.formBuilder.group({
-      title: [this.newPost ? '' : 'NEJ', Validators.compose([Validators.maxLength(50), Validators.required])],
-      body: [this.newPost ? '' : 'NEJ', Validators.compose([Validators.maxLength(255), Validators.required])],
-      category_id: [this.newPost ? '' : '1', Validators.required]
+      title: [this.newPost ? '' : this.postData.title, Validators.compose([Validators.maxLength(50), Validators.required])],
+      body: [this.newPost ? '' : this.postData.body, Validators.compose([Validators.maxLength(255), Validators.required])],
+      category_id: [this.newPost ? '' : this.postData.category_id, Validators.required]
     })
   }
 
@@ -77,9 +77,9 @@ export class PostPage {
     // this.navCtrl.pop();
   }
 
-  handlePost() {
+  savePost() {
     let loading = this.loadingCtrl.create({
-      content: this.newPost ? 'Opretter indlæg' : 'Opdaterer indlæg'
+      content:'Opretter indlæg'
     })
     loading.present();
     if(!this.postForm.valid) {
@@ -94,7 +94,7 @@ export class PostPage {
           loading.dismiss();
           this.confirmedExit = true;
           let toast = this.toastCtrl.create({
-            message: this.newPost ? 'Indlæg oprettet' : 'Indlæg opdateret',
+            message: 'Indlæg oprettet',
             duration: 3000,
             position: 'top',
             showCloseButton: true,
@@ -118,11 +118,49 @@ export class PostPage {
         })
     }
     // TODO: create observable to subscribe on new/update post, in order to getNewPosts
-    console.log(JSON.stringify(this.postData.name))
-    console.log(this.postForm.value.title, this.postForm.value.body);
-    console.log();
+    // console.log(JSON.stringify(this.postData.name))
+    // console.log(this.postForm.value.title, this.postForm.value.body);
+    // console.log();
   }
-  test($event) {
-    console.log($event, $event.value);
+  updatePost() {
+    let loading = this.loadingCtrl.create({
+      content:'Opdaterer Indlæg'
+    })
+    loading.present();
+    if(!this.postForm.valid) {
+      loading.dismiss()
+      this.submitAttempt = true;
+      console.log('NOT VALID');
+      return;
+    } else {
+      // TODO: handle either update or post, depending on state
+      this.forumService.updatePost(this.postData.post_id, Object.assign(this.postForm.value, {user_name: this.postData.user_name}))
+        .then( result => {
+          loading.dismiss();
+          this.confirmedExit = true;
+          let toast = this.toastCtrl.create({
+            message: 'Indlæg opdateret',
+            duration: 3000,
+            position: 'top',
+            showCloseButton: true,
+            closeButtonText: 'Luk'
+          });
+          toast.present();
+          this.navCtrl.pop()
+        })
+        .catch(err => {
+          loading.dismiss();
+          this.confirmedExit = true;
+          let toast = this.toastCtrl.create({
+            message: err.message,
+            duration: 3000,
+            position: 'top',
+            showCloseButton: true,
+            closeButtonText: 'Luk'
+          });
+          toast.present();
+          this.navCtrl.pop();
+        })
+    }
   }
 }

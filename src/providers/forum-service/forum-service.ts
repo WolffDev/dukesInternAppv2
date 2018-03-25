@@ -20,6 +20,10 @@ export class ForumServiceProvider {
     const url = `http://dukesdenmark.dk:50080/api/v1/posts?category=${+id}`;
     return url;
   }
+  private postSingleUrl(id) {
+    const url = `http://dukesdenmark.dk:50080/api/v1/posts/${+id}`;
+    return url;
+  }
   private postCommentsUrl(id) {
     const url = `http://dukesdenmark.dk:50080/api/v1//comment?post_id=${+id}`;
     return url;
@@ -47,6 +51,12 @@ export class ForumServiceProvider {
   }
   postNewComment(postId, data) {
     return this.http.post<SaveComment>(this.postCommentsUrl(postId), data).toPromise();
+  }
+  updatePost(postId, data) {
+    return this.http.put<SavePost>(this.postSingleUrl(postId), data).toPromise();
+  }
+  removePost(postId) {
+    return this.http.delete(this.postSingleUrl(postId)).toPromise();
   }
   removeComment(commentId) {
     return this.http.delete(this.singleComment(commentId)).toPromise();

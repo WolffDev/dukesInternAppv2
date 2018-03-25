@@ -6,7 +6,7 @@ import { CategoryResponse } from './../../models/forum/categoryResponse.interfac
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Category } from './../../models/forum/category.interface';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import * as daLocale from 'date-fns/locale/da/index.js'
 
 @IonicPage()
@@ -32,7 +32,8 @@ export class ForumPage {
     private authService: AuthServiceProvider,
     private storageService: StorageServiceProvider,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {
     this.loggedInUser = this.authService.getUser()
   }
@@ -40,6 +41,7 @@ export class ForumPage {
     this.getCategories();
   }
   getCategories() {
+    this.categories = [];
     let loading = this.loadingCtrl.create({
       content: 'Henter Forum'
     });
@@ -66,6 +68,7 @@ export class ForumPage {
   }
 
   getNewPosts(categoryId) {
+    this.forumPosts = [];
     this.forumService.getPostsByCategoryId(categoryId).then(PostResponse => {
       this.activePosts = PostResponse.posts;
     })
@@ -104,13 +107,49 @@ export class ForumPage {
     this.editPost(post)
   }
   editPost(post: Post) {
-    console.log('POST EDIT');
+    this.forumService.postState = false;
+    this.navCtrl.push('PostPage', Object.assign(post, {categories: this.categories}))
   }
   onRemovePostClick(post: Post) {
-    this.removePost(post);
+    let alert = this.alertCtrl.create({
+      title: 'Fjern indlæg',
+      message: 'Er du sikker? Kan ikke fortrydes.',
+      buttons: [
+        {
+          text: 'Ja',
+          handler: () => {
+            this.removePost(post)
+          }
+        },
+        {
+          text: 'Nej',
+          handler: () => {}
+        }
+      ]
+    })
+    alert.present();
   }
   removePost(post: Post) {
-    console.log('REMOVE POST');
+    this.forumService.removePost(post.post_id)
+      .then(result => {
+        this.getCategories();
+        this.doToast('Indlæg slettet');
+      })
+      .catch(err => {
+        console.log(err.error);
+        this.doToast('Noget gik galt. Prøv igen')
+      })
+  }
+
+  doToast(message: string, duration: number = 3000, position: string = 'top') {
+    let toast = this.toastCtrl.create({
+      message,
+      duration,
+      position: 'top',
+      showCloseButton: true,
+      closeButtonText: 'Luk'
+    });
+    toast.present();
   }
 
 }

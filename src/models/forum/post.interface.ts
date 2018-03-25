@@ -5,4 +5,5 @@ export interface Post {
 	user_id: number;
 	user_name: string;
 	created: string;
+	categori_id: number;
 }

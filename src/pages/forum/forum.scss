@@ -1,7 +1,14 @@
 page-forum {
+	.list-ios > .item-block:last-child, 
+	.list-ios > .item-wrapper:last-child .item-block,
+	.list-md > .item-block:last-child, 
+	.list-md > .item-wrapper:last-child .item-block {
+		border: none;
+	}
 	.comment {
 		margin: 15px 0 15px;
-		background-color: rgba(41, 79, 41, 0.2);
+		// background-color: rgba(41, 79, 41, 0.2);
+		background-color: inherit;
 		h3 {
 			margin-top: 0;
 			font-size: 20px;
@@ -13,12 +20,7 @@ page-forum {
 	.post-author {
 		font-size: 12px;
 	}
-	// .list-ios ion-item-sliding,
-	// .list-md ion-item-sliding {
-	// 	background-color: color($colors, mainbg);
-	// }
 	.active-slide {
-		background-color: red;
 		background-color: color($colors, mainbg);
 	}
 }

@@ -68,7 +68,6 @@
  *  ==================================================
  **/
 
-
 .header-ios .toolbar-background-ios,
 .header-md .toolbar-background-md {
 	background-color: rgba(28,51,22,.16);
@@ -89,10 +88,12 @@
 	color: color($colors, dark);
 }
  
-ion-content {
-	background: color($colors, mainbg) !important;  /* fallback for old browsers */
-	// background: -webkit-linear-gradient(to bottom, #2C7744, #171413); 
-	// background: linear-gradient(to bottom, #2C7744, #171413);
+ion-content,
+.content-ios,
+.content-md {
+	// background: color($colors, mainbg) !important;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #2C7744, #171413); 
+	background: linear-gradient(to bottom, #2C7744, #171413);
 	.item-ios,
 	.item-md {
 		background-color: inherit;

@@ -19,7 +19,17 @@
 </ion-header>
 
 <ion-content>
-  <div class="post-card shadow-default" *ngFor="let post of activePosts; index as i" (click)="goToPostDetails(post.post_id)">
+  <ion-refresher (ionRefresh)="updateForum($event)" [pullMax]="150" [pullMin]="120">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Træk ned for at opdatere forum"
+      refreshingSpinner="circles"
+      refreshingText="Opdaterer..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="post-card shadow-default" *ngFor="let post of activePosts; index as i" (click)="goToPostDetails(post.post_id, post)">
     <ion-grid>
       <ion-row>
         <ion-col col-3 class="author-avatar">

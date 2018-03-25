@@ -78,10 +78,11 @@ export class ForumPage {
       .catch(err => console.log(JSON.stringify(err)));
     })
   }
-  goToPostDetails(postId) {
+  goToPostDetails(postId, post) {
     let postIndex = this.activePosts.findIndex(post => {
       return post.post_id == postId;
     });
+    console.log(post);
     this.navCtrl.push('SinglePostPage', this.activePosts[postIndex]);
   }
   setActivePosts(categoryTitle) {
@@ -93,6 +94,10 @@ export class ForumPage {
   addNewPost() {
     this.forumService.postState = true;
     this.navCtrl.push('PostPage', Object.assign(this.authService.getUser(), {categories: this.categories}));
+  }
+  async updateForum(refresher) {
+    await this.getCategories();
+    refresher.complete()
   }
 
 }

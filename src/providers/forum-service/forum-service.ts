@@ -1,3 +1,4 @@
+import { PostComment } from './../../models/forum/postComment.interface';
 import { SaveComment } from './../../models/forum/saveComment.interface';
 import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { SavePost } from './../../models/forum/savePost.interface';
@@ -49,6 +50,9 @@ export class ForumServiceProvider {
   }
   removeComment(commentId) {
     return this.http.delete(this.singleComment(commentId)).toPromise();
+  }
+  updateComment(commentId, data) {
+    return this.http.put(this.singleComment(commentId), data).toPromise();
   }
   set postState(data: boolean) {
     this._newPost = data;

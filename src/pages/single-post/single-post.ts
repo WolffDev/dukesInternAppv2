@@ -85,15 +85,12 @@ export class SinglePostPage {
         {
           text: 'Ja',
           handler: () => {
-            // alert.dismiss();
             this.removeComment(commentId)
           }
         },
         {
           text: 'Nej',
-          handler: () => {
-            // alert.dismiss();
-          }
+          handler: () => {}
         }
       ]
     })
@@ -109,6 +106,47 @@ export class SinglePostPage {
       this.doToast('Noget gik galt, prøv igen')
       console.log(err);
     })
+  }
+  onEditCommentClick(comment: PostComment) {
+    let alert = this.alertCtrl.create({
+      title: 'Rediger kommentar',
+      message: 'Udfyld feltet',
+      inputs: [
+        {
+          name: 'text',
+          value: comment.text
+        }
+      ],
+      buttons: [
+        {
+          text: 'Opdater',
+          handler: data => {
+            if(data.text.length > 100) {
+              this.doToast('Kommentar er mere end 100 tegn<br>Prøv igen.')
+            } else {
+              comment.text = data.text;
+              this.updateComment(comment);
+            }
+          }
+        },
+        {
+          text: 'Nej',
+          role: 'cancel',
+          handler: data => {
+            console.log('NEJ', data.text);
+          }
+        }
+      ]
+    })
+    alert.present();
+  }
+  updateComment(comment: PostComment) {
+    let data = Object.assign({text: comment.text, user_name: comment.user_name});
+    this.forumService.updateComment(comment.comment_id, data)
+      .then(result => {
+        this.getComments();
+        this.doToast('Kommentar opdateret')
+      })
   }
 
   doToast(message: string, duration: number = 3000, position: string = 'top') {

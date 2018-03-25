@@ -54,12 +54,12 @@
           </p>
       </ion-item>
       <ion-item-options side="right" *ngIf="loggedInUser.userId == comment.user_id || loggedInUser.auth_level >= 3">
-        <button ion-button color="light" icon-start>
-          <ion-icon name="more"></ion-icon>
+        <button ion-button color="fabColor" icon-start (click)="onEditCommentClick(comment)">
+          <!-- <ion-icon name="more"></ion-icon> -->
           Rediger
         </button>
         <button ion-button color="danger" icon-end (click)="onRemoveCommentClick(comment.comment_id)">
-          <ion-icon name="trash"></ion-icon>
+          <!-- <ion-icon name="trash"></ion-icon> -->
           Fjern
         </button>
       </ion-item-options>

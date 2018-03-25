@@ -45,7 +45,7 @@
       <ion-item>
           <avatar name="{{comment.user_name}}" displayType="circle" size="50" item-start></avatar>
           <p class="comment-text">
-            {{comment.text}} - {{comment.comment_id}}
+            {{comment.text}}
           </p>
           <p class="comment-author">
             @{{comment.user_name}}, {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
@@ -56,7 +56,7 @@
           <ion-icon name="more"></ion-icon>
           Rediger
         </button>
-        <button ion-button color="danger" icon-end (click)="onRemoveCommentClick(comment.user_id, comment.comment_id)">
+        <button ion-button color="danger" icon-end (click)="onRemoveCommentClick(comment.comment_id)">
           <ion-icon name="trash"></ion-icon>
           Fjern
         </button>

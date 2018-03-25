@@ -23,6 +23,10 @@ export class ForumServiceProvider {
     const url = `http://dukesdenmark.dk:50080/api/v1//comment?post_id=${+id}`;
     return url;
   }
+  private singleComment(id = 0) {
+    const url = `http://dukesdenmark.dk:50080/api/v1//comment/${+id}`;
+    return url;
+  }
 
   constructor(public http: HttpClient) {
 
@@ -42,6 +46,9 @@ export class ForumServiceProvider {
   }
   postNewComment(postId, data) {
     return this.http.post<SaveComment>(this.postCommentsUrl(postId), data).toPromise();
+  }
+  removeComment(commentId) {
+    return this.http.delete(this.singleComment(commentId)).toPromise();
   }
   set postState(data: boolean) {
     this._newPost = data;

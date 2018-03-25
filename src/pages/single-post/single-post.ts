@@ -4,7 +4,7 @@ import { ForumServiceProvider } from './../../providers/forum-service/forum-serv
 import { PostComment } from './../../models/forum/postComment.interface';
 import { Post } from './../../models/forum/post.interface';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import * as daLocale from 'date-fns/locale/da/index.js'
 
 @IonicPage()
@@ -34,7 +34,8 @@ export class SinglePostPage {
     public navParams: NavParams,
     public forumService: ForumServiceProvider,
     private authService: AuthServiceProvider,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
   ) {
     this.postData = this.navParams.data;
     this.loggedInUser = this.authService.getUser();
@@ -79,8 +80,43 @@ export class SinglePostPage {
   doWordCount(value) {
     this.wordCount = this.maxWordCount - value.length;
   }
-  onRemoveCommentClick(userId, commentId) {
-
+  onRemoveCommentClick(commentId) {
+    let alert = this.alertCtrl.create({
+      title: 'Fjern kommentar',
+      message: 'Er du sikker? Kan ikke fortrydes.',
+      buttons: [
+        {
+          text: 'Ja',
+          handler: () => {
+            // alert.dismiss();
+            this.removeComment(commentId)
+          }
+        },
+        {
+          text: 'Nej',
+          handler: () => {
+            // alert.dismiss();
+          }
+        }
+      ]
+    })
+    alert.present();
   }
+  removeComment(commentId) {
+    this.forumService.removeComment(commentId)
+    .then(result => {
+      this.getComments();
+      let toast = this.toastCtrl.create({
+        message: 'Kommentar fjernet',
+        duration: 3000,
+        position: 'top',
+        showCloseButton: true,
+        closeButtonText: 'Luk'
+      });
+      toast.present();
+    })
+    .catch(err => console.log(err))
+  }
+
 
 }

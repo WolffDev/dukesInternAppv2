@@ -40,7 +40,7 @@
         </ion-list>
       </form>
 
-      <button ion-button block color="actColor" (click)="handlePost()" [disabled]="!postForm.valid">
+      <button ion-button block color="actColor" (click)="newPost ? savePost() : updatePost()" [disabled]="!postForm.valid">
         {{newPost ? 'Opret indlæg' : 'Opdater indlæg'}}
       </button>
   </div>

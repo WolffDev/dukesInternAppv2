@@ -1,14 +1,26 @@
 page-forum {
-	.post-card {
-		margin-bottom: 15px;
-		background-color: rgba(24, 57, 35, .15);
-		padding: 0 10px 0;
+	.list-ios > .item-block:last-child, 
+	.list-ios > .item-wrapper:last-child .item-block,
+	.list-md > .item-block:last-child, 
+	.list-md > .item-wrapper:last-child .item-block {
+		border: none;
 	}
-	h3 {
-		margin-top: 0;
-		font-size: 18px;
+	.comment {
+		margin: 15px 0 15px;
+		// background-color: rgba(41, 79, 41, 0.2);
+		background-color: inherit;
+		h3 {
+			margin-top: 0;
+			font-size: 20px;
+		}
+	}
+	.post-body {
+		font-size: 14px;
 	}
 	.post-author {
-		font-size: 0.8em;
+		font-size: 12px;
+	}
+	.active-slide {
+		background-color: color($colors, mainbg);
 	}
 }

@@ -1,9 +1,10 @@
+import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { PostComment } from './../../models/forum/postComment.interface';
 import { Post } from './../../models/forum/post.interface';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import * as daLocale from 'date-fns/locale/da/index.js'
 
 @IonicPage()
@@ -14,10 +15,11 @@ import * as daLocale from 'date-fns/locale/da/index.js'
 
 export class SinglePostPage {
   
-  public searching: boolean = true;
+  public searching: boolean = false;
   public maxWordCount: number = 100;
   public wordCount: number = 100;
   public newComment: string;
+  public postingNewComment: boolean = false;
 
   public postData: Post;
   public comments: PostComment[];
@@ -29,7 +31,9 @@ export class SinglePostPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public forumService: ForumServiceProvider
+    public forumService: ForumServiceProvider,
+    private authService: AuthServiceProvider,
+    private toastCtrl: ToastController
   ) {
     this.postData = this.navParams.data;
   }
@@ -39,15 +43,37 @@ export class SinglePostPage {
   }
 
   getComments() {
+    this.searching = true;
     this.forumService.getPostComments(this.postData.post_id)
       .then(PostCommentsResponse => {
         this.comments = PostCommentsResponse.comments;
+        this.searching = false;
       })
       .catch(err => console.log(err));
   }
 
-  test() {
-    console.log(this.newComment);
+  postNewComment() {
+    this.postingNewComment = true;
+    let user = this.authService.getUser();
+    let comment = Object.assign({}, {
+      text: this.newComment,
+      user_name: user.name
+    });
+    this.newComment = '';
+    this.forumService.postNewComment(this.postData.post_id, comment)
+      .then(result => {
+        this.postingNewComment = false;
+        this.getComments();
+        let toast = this.toastCtrl.create({
+          message: 'Kommentar oprettet',
+          duration: 3000,
+          position: 'top',
+          showCloseButton: true,
+          closeButtonText: 'Luk'
+        });
+        toast.present();
+      })
+      .catch(err => console.log(err))
   }
   doWordCount(value) {
     this.wordCount = this.maxWordCount - value.length;

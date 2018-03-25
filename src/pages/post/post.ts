@@ -95,7 +95,7 @@ export class PostPage {
           this.confirmedExit = true;
           let toast = this.toastCtrl.create({
             message: this.newPost ? 'Indlæg oprettet' : 'Indlæg opdateret',
-            duration: 10000,
+            duration: 3000,
             position: 'top',
             showCloseButton: true,
             closeButtonText: 'Luk'
@@ -108,7 +108,7 @@ export class PostPage {
           this.confirmedExit = true;
           let toast = this.toastCtrl.create({
             message: err.message,
-            duration: 10000,
+            duration: 3000,
             position: 'top',
             showCloseButton: true,
             closeButtonText: 'Luk'

@@ -32,11 +32,20 @@
 </div>
 
 <div class="comments-container">
+  <h3>Kommentarer:</h3>
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
+    <p>Henter kommentare</p>
   </div>
-  <div class="comment">
-    test
+  <div class="comment" ion-row *ngFor="let comment of comments">
+    <avatar name="{{comment.user_name}}" displayType="circle" size="50" ion-col col-2></avatar>
+    <div ion-col col-10>
+      {{comment.text}}
+      <br>
+      <p class="comment-author">
+        @{{comment.user_name}}, {{postData.created | dfnsFormat : 'DD/MM-YYYY, [kl]. HH:MM' : i18nOptions}}
+      </p>
+    </div>
   </div>
 </div>
 
@@ -45,10 +54,10 @@
 <ion-footer>
   <ion-toolbar>
     <ion-item no-lines>
-      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="101" (ionChange)=doWordCount($event.value)></ion-input>
+      <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="100" (ionChange)=doWordCount($event.value) [disabled]="postingNewComment"></ion-input>
       <span item-end ion-text color="danger">{{wordCount}}</span>
-      <button ion-button icon-only item-end (click)="test()" [disabled]="!newComment" clear>
-          <ion-icon name="send" style="font-size:24px;"></ion-icon>
+      <button ion-button icon-only item-end (click)="postNewComment()" [disabled]="!newComment" clear>
+          <ion-icon name="send"></ion-icon>
         </button>
     </ion-item>
   </ion-toolbar>

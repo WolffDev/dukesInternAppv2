@@ -1,3 +1,4 @@
+import { SaveComment } from './../../models/forum/saveComment.interface';
 import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { SavePost } from './../../models/forum/savePost.interface';
 import { PostResponse } from './../../models/forum/postResponse.interface';
@@ -38,6 +39,9 @@ export class ForumServiceProvider {
   }
   getPostComments(postId) {
     return this.http.get<PostCommentsResponse>(this.postCommentsUrl(postId)).toPromise();
+  }
+  postNewComment(postId, data) {
+    return this.http.post<SaveComment>(this.postCommentsUrl(postId), data).toPromise();
   }
   set postState(data: boolean) {
     this._newPost = data;

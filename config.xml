@@ -3,7 +3,7 @@
     <name>dukesInternApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.131:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -93,5 +93,6 @@
     <allow-navigation href="http://169.254.66.179:8100" />
     <allow-navigation href="http://192.168.1.131:8101" />
     <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
     <engine name="ios" spec="4.5.4" />
 </widget>

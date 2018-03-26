@@ -1,3 +1,4 @@
+import { OneSignal } from '@ionic-native/onesignal';
 import { ForumServiceProvider } from './../providers/forum-service/forum-service';
 import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -14,6 +15,7 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio'
 import { TouchID } from '@ionic-native/touch-id';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { NotificationServiceProvider } from '../providers/notification-service/notification-service';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
     },
     FingerprintAIO,
     TouchID,
+    OneSignal,
     NativeStorage,
     StatusBar,
     SplashScreen,
@@ -48,7 +51,8 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
     AuthServiceProvider,
     StorageServiceProvider,
     NativePageTransitions,
-    ForumServiceProvider
+    ForumServiceProvider,
+    NotificationServiceProvider
   ]
 })
 export class AppModule {}

@@ -1,5 +1,3 @@
-import { PostData } from './../../models/forum/postData.interface';
-import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Component } from '@angular/core';
@@ -88,7 +86,6 @@ export class PostPage {
       console.log('NOT VALID');
       return;
     } else {
-      // TODO: handle either update or post, depending on state
       this.forumService.saveNewPost(Object.assign(this.postForm.value, {user_name: this.postData.name}))
         .then( result => {
           loading.dismiss();
@@ -118,10 +115,6 @@ export class PostPage {
           this.navCtrl.pop();
         })
     }
-    // TODO: create observable to subscribe on new/update post, in order to getNewPosts
-    // console.log(JSON.stringify(this.postData.name))
-    // console.log(this.postForm.value.title, this.postForm.value.body);
-    // console.log();
   }
   updatePost() {
     let loading = this.loadingCtrl.create({
@@ -134,7 +127,6 @@ export class PostPage {
       console.log('NOT VALID');
       return;
     } else {
-      // TODO: handle either update or post, depending on state
       this.forumService.updatePost(this.postData.post_id, Object.assign(this.postForm.value, {user_name: this.postData.user_name}))
         .then( result => {
           loading.dismiss();

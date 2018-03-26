@@ -1,5 +1,4 @@
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { PostComment } from './../../models/forum/postComment.interface';
 import { Post } from './../../models/forum/post.interface';

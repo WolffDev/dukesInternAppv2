@@ -1,8 +1,7 @@
-import { EventsResponse } from './../../models/events/eventsResponse.interface.ts';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, ViewController, LoadingController, AlertController } from 'ionic-angular';
 import { EventServiceProvider } from '../../providers/event-service/event-service';
 import { SingleEvent } from '../../models/events/singleEvent.interface';
 

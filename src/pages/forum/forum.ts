@@ -1,8 +1,5 @@
-import { PostResponse } from './../../models/forum/postResponse.interface';
 import { Post } from './../../models/forum/post.interface';
-import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Category } from './../../models/forum/category.interface';
 import { Component } from '@angular/core';
@@ -30,7 +27,6 @@ export class ForumPage {
     public navParams: NavParams,
     private forumService: ForumServiceProvider,
     private authService: AuthServiceProvider,
-    private storageService: StorageServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController

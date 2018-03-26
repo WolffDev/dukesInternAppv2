@@ -1,11 +1,9 @@
-import { RefreshTokenResponse } from './../../models/auth/refreshTokenResponse.interface';
 import { SingleNews } from './../../models/news/singleNews.interface';
 import { NewsServiceProvider } from './../../providers/news-service/news-service';
-import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController, LoadingController, Modal, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, LoadingController, ModalController } from 'ionic-angular';
 // import 'rxjs/add/operator/map';
 import * as daLocale from 'date-fns/locale/da/index.js'
 

@@ -10,7 +10,7 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "serve:android": "ionic cordova run android --device --livereload -c -s --debug",
+    "serve:android": "ionic cordova run android --device --livereload --debug -c",
     "serve:ios": "ionic cordova run ios --device --livereload -c -s"
   },
   "dependencies": {
@@ -32,7 +32,7 @@
     "@ionic/pro": "1.0.20",
     "@ionic/storage": "2.1.3",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
-    "cordova-android": "^6.4.0",
+    "cordova-android": "6.4.0",
     "cordova-ios": "4.5.4",
     "cordova-plugin-add-swift-support": "^1.7.1",
     "cordova-plugin-device": "^2.0.1",
@@ -74,7 +74,8 @@
       "com.telerik.plugins.nativepagetransitions": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

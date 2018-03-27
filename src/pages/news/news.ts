@@ -1,4 +1,3 @@
-import { NotificationServiceProvider } from './../../providers/notification-service/notification-service';
 import { SingleNews } from './../../models/news/singleNews.interface';
 import { NewsServiceProvider } from './../../providers/news-service/news-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
@@ -29,10 +28,8 @@ export class NewsPage {
     public storageService: StorageServiceProvider,
     private newsService: NewsServiceProvider,
     private loadingCtrl: LoadingController,
-    private notifService: NotificationServiceProvider,
     private authService: AuthServiceProvider // only used for testing atm
   ) {
-    this.notifService.test();
   }
 
   ionViewDidLoad(){

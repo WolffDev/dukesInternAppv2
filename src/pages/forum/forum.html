@@ -30,7 +30,7 @@
   </ion-refresher>
 
   <ion-list no-lines>
-    <ion-item-sliding *ngFor="let post of activePosts" class="comment shadow-default" (click)="goToPostDetails(post.post_id)">
+    <ion-item-sliding *ngFor="let post of activePosts" class="comment shadow-default" (click)="goToPostDetails(post.post_id, $event)">
       <ion-item text-wrap>
         <ion-row>
           <ion-col class="post-title">

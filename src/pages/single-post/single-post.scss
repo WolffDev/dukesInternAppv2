@@ -36,8 +36,8 @@ page-single-post {
 	.list-ios ion-item-sliding,
 	.list-md ion-item-sliding {
 		background-color: inherit;
+		// background-color: transparent;
 	}
-	ion-item-sliding.active-slide,
 	ion-item-sliding.active-slide {
 		background-color: color($colors, mainbg);
 	}

@@ -1,6 +1,4 @@
 import { DirectivesModule } from './../directives/directives.module';
-import { Keyboard } from '@ionic-native/keyboard';
-import { OneSignal } from '@ionic-native/onesignal';
 import { ForumServiceProvider } from './../providers/forum-service/forum-service';
 import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -17,7 +15,7 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio'
 import { TouchID } from '@ionic-native/touch-id';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
-import { NotificationServiceProvider } from '../providers/notification-service/notification-service';
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 @NgModule({
@@ -32,7 +30,7 @@ import { NotificationServiceProvider } from '../providers/notification-service/n
       tabsHideOnSubPages: true
     }),
     AvatarModule.forRoot(),
-    DirectivesModule
+    DirectivesModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +45,6 @@ import { NotificationServiceProvider } from '../providers/notification-service/n
     FingerprintAIO,
     Keyboard,
     TouchID,
-    OneSignal,
     NativeStorage,
     StatusBar,
     SplashScreen,
@@ -56,7 +53,6 @@ import { NotificationServiceProvider } from '../providers/notification-service/n
     StorageServiceProvider,
     NativePageTransitions,
     ForumServiceProvider,
-    NotificationServiceProvider
   ]
 })
 export class AppModule {}

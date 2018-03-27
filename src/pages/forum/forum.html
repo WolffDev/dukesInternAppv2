@@ -30,7 +30,7 @@
   </ion-refresher>
 
   <ion-list no-lines>
-    <ion-item-sliding *ngFor="let post of activePosts" class="comment shadow-default" (click)="goToPostDetails(post.post_id, $event)">
+    <ion-item-sliding *ngFor="let post of activePosts" class="comment shadow-default" (click)="goToPostDetails(post.post_id)">
       <ion-item text-wrap>
         <ion-row>
           <ion-col class="post-title">
@@ -42,6 +42,11 @@
           <ion-col class="post-body">
             {{post.body}}
           </ion-col>
+          <!-- <ion-col col-2 class="post-btn">
+            <button ion-button icon-only clear (click)="goToPostDetails(post.post_id)" large>
+              <ion-icon name="arrow-dropright" color="light"></ion-icon>
+            </button>
+          </ion-col> -->
         </ion-row>
 
         <ion-row class="post-author">

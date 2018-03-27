@@ -6,8 +6,9 @@ page-forum {
 		border: none;
 	}
 	.comment {
-		margin: 25px 0 15px;
-		background-color: rgba(0, 0, 0, 0.05);
+		margin: 15px 0 15px;
+		background-color: rgba(41, 79, 41, 0.2);
+		// background-color: inherit;
 		h3 {
 			margin-top: 0;
 			font-size: 20px;

@@ -50,7 +50,7 @@ export class KeyboardAttachDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    if (this.platform.is('cordova') && this.platform.is('ios') || this.platform.is('android') && this.platform.is('cordova')) {
+    if (this.platform.is('cordova') && this.platform.is('ios') || this.platform.is('cordova') && this.platform.is('android')) {
       this.onShowSubscription = this.keyboard.onKeyboardShow().subscribe(e => this.onShow(e));
       this.onHideSubscription = this.keyboard.onKeyboardHide().subscribe(() => this.onHide());
     }

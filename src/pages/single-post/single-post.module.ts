@@ -13,7 +13,7 @@ import { DateFnsModule } from 'ngx-date-fns';
     IonicPageModule.forChild(SinglePostPage),
     AvatarModule,
     DateFnsModule,
-    DirectivesModule
+    DirectivesModule,
   ],
 })
 export class SinglePostPageModule {}

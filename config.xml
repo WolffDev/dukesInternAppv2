@@ -43,11 +43,6 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <resource-file src="res/drawable-mdpi/ic_stat_onesignal_default.png" />
-        <resource-file src="res/drawable-hdpi/ic_stat_onesignal_default.png" />
-        <resource-file src="res/drawable-xhdpi/ic_stat_onesignal_default.png" />
-        <resource-file src="res/drawable-xxhdpi/ic_stat_onesignal_default.png" />
-        <resource-file src="res/drawable-xxxhdpi/ic_stat_onesignal_default.png" />
     </platform>
     <platform name="ios">
         <preference name="UseSwiftLanguageVersion" value="3.2" />
@@ -99,9 +94,9 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-fingerprint-aio" spec="^1.3.4" />
-    <plugin name="cordova-plugin-touch-id" spec="^3.3.1">
-        <variable name="FACEID_USAGE_DESCRIPTION" value="Test" />
-    </plugin>
     <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
-    <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
+    <allow-navigation href="http://192.168.1.131:8100" />
+    <allow-navigation href="http://169.254.71.211:8100" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="6.4.0" />
 </widget>

@@ -10,7 +10,7 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "serve:android": "ionic cordova run android --device --livereload -c -s --debug",
+    "serve:android": "ionic cordova run android --device --livereload --debug -c",
     "serve:ios": "ionic cordova run ios --device --livereload -c -s"
   },
   "dependencies": {
@@ -22,8 +22,8 @@
     "@angular/http": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
-    "@ionic-native/core": "4.6.0",
-    "@ionic-native/fingerprint-aio": "^4.6.0",
+    "@ionic-native/core": "4.5.3",
+    "@ionic-native/fingerprint-aio": "^4.5.3",
     "@ionic-native/keyboard": "^4.6.0",
     "@ionic-native/native-page-transitions": "^4.6.0",
     "@ionic-native/native-storage": "^4.6.0",
@@ -77,7 +77,8 @@
       "onesignal-cordova-plugin": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

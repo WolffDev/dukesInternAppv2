@@ -21,5 +21,9 @@ export class NotificationServiceProvider {
     this.oneSignal.endInit();
   }
 
+  public test() {
+    console.log('test');
+  }
+
 
 }

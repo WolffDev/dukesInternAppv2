@@ -32,7 +32,7 @@ export class NewsPage {
     private notifService: NotificationServiceProvider,
     private authService: AuthServiceProvider // only used for testing atm
   ) {
-    
+    this.notifService.test();
   }
 
   ionViewDidLoad(){

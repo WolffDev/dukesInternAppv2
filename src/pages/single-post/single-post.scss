@@ -35,8 +35,11 @@ page-single-post {
 	}
 	.list-ios ion-item-sliding,
 	.list-md ion-item-sliding {
-		background-color: color($colors, mainbg);
+		background-color: inherit;
 		// background-color: transparent;
+	}
+	ion-item-sliding.active-slide {
+		background-color: color($colors, mainbg);
 	}
 	.list-ios > .item-block:last-child, 
 	.list-ios > .item-wrapper:last-child .item-block,

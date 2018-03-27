@@ -106,14 +106,16 @@ export class ForumPage {
     await this.getCategories();
     refresher.complete()
   }
-  onEditPostClick(post: Post) {
+  onEditPostClick(post: Post, event) {
+    event.stopPropagation();
     this.editPost(post)
   }
   editPost(post: Post) {
     this.forumService.postState = false;
     this.navCtrl.push('PostPage', Object.assign(post, {categories: this.categories}))
   }
-  onRemovePostClick(post: Post) {
+  onRemovePostClick(post: Post, event) {
+    event.stopPropagation();
     let alert = this.alertCtrl.create({
       title: 'Fjern indlæg',
       message: 'Er du sikker? Kan ikke fortrydes.',

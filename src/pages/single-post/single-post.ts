@@ -1,3 +1,4 @@
+import { Keyboard } from '@ionic-native/keyboard';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { PostComment } from './../../models/forum/postComment.interface';
@@ -34,10 +35,12 @@ export class SinglePostPage {
     public forumService: ForumServiceProvider,
     private authService: AuthServiceProvider,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public keyboard: Keyboard
   ) {
     this.postData = this.navParams.data;
     this.loggedInUser = this.authService.getUser();
+    this.keyboard.disableScroll(false);
   }
   
   ionViewDidLoad() {

@@ -1,3 +1,5 @@
+// import { DirectivesModule } from './../directives/directives.module';
+import { Keyboard } from '@ionic-native/keyboard';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ForumServiceProvider } from './../providers/forum-service/forum-service';
 import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
@@ -30,6 +32,7 @@ import { NotificationServiceProvider } from '../providers/notification-service/n
       tabsHideOnSubPages: true
     }),
     AvatarModule.forRoot(),
+    // DirectivesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,6 +45,7 @@ import { NotificationServiceProvider } from '../providers/notification-service/n
       multi: true
     },
     FingerprintAIO,
+    Keyboard,
     TouchID,
     OneSignal,
     NativeStorage,

@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "5.2.9",
     "@ionic-native/core": "4.5.3",
     "@ionic-native/fingerprint-aio": "^4.5.3",
+    "@ionic-native/keyboard": "^4.6.0",
     "@ionic-native/native-page-transitions": "^4.6.0",
     "@ionic-native/native-storage": "^4.5.3",
     "@ionic-native/onesignal": "^4.6.0",

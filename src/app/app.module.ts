@@ -1,4 +1,4 @@
-// import { DirectivesModule } from './../directives/directives.module';
+import { DirectivesModule } from './../directives/directives.module';
 import { Keyboard } from '@ionic-native/keyboard';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ForumServiceProvider } from './../providers/forum-service/forum-service';
@@ -32,7 +32,7 @@ import { NotificationServiceProvider } from '../providers/notification-service/n
       tabsHideOnSubPages: true
     }),
     AvatarModule.forRoot(),
-    // DirectivesModule
+    DirectivesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

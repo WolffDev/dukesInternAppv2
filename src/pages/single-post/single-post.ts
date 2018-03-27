@@ -149,6 +149,10 @@ export class SinglePostPage {
         this.getComments();
         this.doToast('Kommentar opdateret')
       })
+      .catch(err => {
+        console.log(err);
+        this.doToast('Noget gik galt. Prøv igen')
+      })
   }
 
   doToast(message: string, duration: number = 3000, position: string = 'top') {

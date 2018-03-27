@@ -74,6 +74,7 @@ export class AuthServiceProvider {
       .then(RefreshTokenResponse => {
         this.setToken(RefreshTokenResponse.token)
       })
+      .catch(err => console.log(err))
   }
 
 

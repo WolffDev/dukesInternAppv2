@@ -17,7 +17,7 @@ import { NgForm } from '@angular/forms';
 export class LoginPage {
 
   private fingerprintOptions: FingerprintOptions;
-  public fingerprint: boolean;
+  public fingerprint: boolean = false;
 
   constructor(
     private authService: AuthServiceProvider,
@@ -41,8 +41,8 @@ export class LoginPage {
         localizedFallbackTitle: 'Cancel',
         localizedReason: 'Login med fingeraftryk'
       }
-      this.checkLoginStatus();
       this.checkToken();
+      this.checkLoginStatus();
 
   }
   

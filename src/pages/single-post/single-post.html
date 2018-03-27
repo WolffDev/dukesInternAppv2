@@ -15,7 +15,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding #content>
 <div class="post-container">
   <ion-row class="post-content">
     <ion-col>
@@ -68,7 +68,7 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer [keyboardAttach]="content">
   <ion-toolbar>
     <ion-item no-lines>
       <ion-input type="text" [(ngModel)]="newComment" placeholder="Skriv kommentar" maxlength="100" (ionChange)=doWordCount($event.value) [disabled]="postingNewComment" clearInput></ion-input>

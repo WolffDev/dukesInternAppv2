@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../directives/directives.module';
 import { ForumServiceProvider } from './../providers/forum-service/forum-service';
 import { AuthInterceptorProvider } from './../providers/auth-interceptor/auth-interceptor';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -14,6 +15,7 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio'
 import { TouchID } from '@ionic-native/touch-id';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
       tabsHideOnSubPages: true
     }),
     AvatarModule.forRoot(),
+    DirectivesModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,6 +43,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
       multi: true
     },
     FingerprintAIO,
+    Keyboard,
     TouchID,
     NativeStorage,
     StatusBar,

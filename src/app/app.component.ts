@@ -27,9 +27,16 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
       this.statusBar.hide();
-    
+      // this.nav.setRoot('LoginPage');
       
-    });
+      
+    })
+    .catch(err => {
+      this.splashScreen.hide();
+      this.statusBar.hide();
+      // this.nav.setRoot('LoginPage');
+
+    })
   }
 
   logout() {

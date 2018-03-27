@@ -41,7 +41,7 @@
     <ion-list-header>Kommentarer:</ion-list-header>
 
     <ion-item-sliding *ngFor="let comment of comments" class="comment">
-      <ion-item>
+      <ion-item text-wrap>
           <avatar name="{{comment.user_name}}" displayType="circle" size="50" item-start></avatar>
           <p class="comment-text">
             {{comment.text}}

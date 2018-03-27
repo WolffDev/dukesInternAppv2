@@ -1,3 +1,5 @@
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { TouchID } from '@ionic-native/touch-id';
 import { FingerprintAIO, FingerprintOptions } from '@ionic-native/fingerprint-aio';
@@ -23,20 +25,25 @@ export class LoginPage {
     private alertCtrl: AlertController,
     private storageService: StorageServiceProvider,
     private faio: FingerprintAIO,
-    private plt: Platform,
     private touchId: TouchID,
     private navCtrl: NavController,
-    private nativeTransitions: NativePageTransitions
+    private nativeTransitions: NativePageTransitions,
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusbar: StatusBar
   ) {
-    this.fingerprintOptions = {
-      clientId: 'DukesDenmarkInternApp',
-      clientSecret: 'password123',
-      disableBackup: true,
-      localizedFallbackTitle: 'Cancel',
-      localizedReason: 'Login med fingeraftryk'
-    }
-    this.checkLoginStatus();
-    this.checkToken();
+      this.splashScreen.hide();
+      this.statusbar.hide();
+      this.fingerprintOptions = {
+        clientId: 'DukesDenmarkInternApp',
+        clientSecret: 'password123',
+        disableBackup: true,
+        localizedFallbackTitle: 'Cancel',
+        localizedReason: 'Login med fingeraftryk'
+      }
+      this.checkLoginStatus();
+      this.checkToken();
+
   }
   
   ionViewDidLoad() {
@@ -58,7 +65,7 @@ export class LoginPage {
   }
 
   async showFingerprintDialog() {
-    if(this.plt.is('ios')) {
+    if(this.platform.is('ios')) {
       const available = await this.touchId.isAvailable();
       if(available === 'touch') {
         this.touchId.verifyFingerprint('Scan dit fingeraftryk...')

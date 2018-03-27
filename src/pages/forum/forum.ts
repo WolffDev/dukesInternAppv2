@@ -1,8 +1,5 @@
-import { PostResponse } from './../../models/forum/postResponse.interface';
 import { Post } from './../../models/forum/post.interface';
-import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
-import { CategoryResponse } from './../../models/forum/categoryResponse.interface';
 import { ForumServiceProvider } from './../../providers/forum-service/forum-service';
 import { Category } from './../../models/forum/category.interface';
 import { Component } from '@angular/core';
@@ -30,7 +27,6 @@ export class ForumPage {
     public navParams: NavParams,
     private forumService: ForumServiceProvider,
     private authService: AuthServiceProvider,
-    private storageService: StorageServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController
@@ -86,7 +82,8 @@ export class ForumPage {
       .catch(err => console.log(JSON.stringify(err)));
     })
   }
-  goToPostDetails(postId) {
+  goToPostDetails(postId, event) {
+    event.stopPropagation();
     let postIndex = this.activePosts.findIndex(post => {
       return post.post_id == postId;
     });
@@ -106,14 +103,16 @@ export class ForumPage {
     await this.getCategories();
     refresher.complete()
   }
-  onEditPostClick(post: Post) {
+  onEditPostClick(post: Post, event) {
+    event.stopPropagation();
     this.editPost(post)
   }
   editPost(post: Post) {
     this.forumService.postState = false;
     this.navCtrl.push('PostPage', Object.assign(post, {categories: this.categories}))
   }
-  onRemovePostClick(post: Post) {
+  onRemovePostClick(post: Post, event) {
+    event.stopPropagation();
     let alert = this.alertCtrl.create({
       title: 'Fjern indlæg',
       message: 'Er du sikker? Kan ikke fortrydes.',

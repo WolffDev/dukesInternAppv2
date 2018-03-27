@@ -1,6 +1,5 @@
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
-import { SingleEventResponse }  from './../../models/events/singleEventResponse.interface.ts';
 import { EventServiceProvider } from './../../providers/event-service/event-service';
 import { Attendee } from './../../models/events/attendee.interface';
 import { Component } from '@angular/core';

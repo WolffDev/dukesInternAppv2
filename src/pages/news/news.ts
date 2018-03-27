@@ -1,11 +1,10 @@
-import { RefreshTokenResponse } from './../../models/auth/refreshTokenResponse.interface';
+import { NotificationServiceProvider } from './../../providers/notification-service/notification-service';
 import { SingleNews } from './../../models/news/singleNews.interface';
 import { NewsServiceProvider } from './../../providers/news-service/news-service';
-import { NewsResponse } from './../../models/news/newsResponse.interface';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { StorageServiceProvider } from './../../providers/storage-service/storage-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController, LoadingController, Modal, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, LoadingController, ModalController } from 'ionic-angular';
 // import 'rxjs/add/operator/map';
 import * as daLocale from 'date-fns/locale/da/index.js'
 
@@ -30,6 +29,7 @@ export class NewsPage {
     public storageService: StorageServiceProvider,
     private newsService: NewsServiceProvider,
     private loadingCtrl: LoadingController,
+    private notifService: NotificationServiceProvider,
     private authService: AuthServiceProvider // only used for testing atm
   ) {
     

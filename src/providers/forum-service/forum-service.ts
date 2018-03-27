@@ -1,4 +1,3 @@
-import { PostComment } from './../../models/forum/postComment.interface';
 import { SaveComment } from './../../models/forum/saveComment.interface';
 import { PostCommentsResponse } from './../../models/forum/postCommentsResponse.interface';
 import { SavePost } from './../../models/forum/savePost.interface';

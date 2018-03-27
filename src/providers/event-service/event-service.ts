@@ -1,6 +1,5 @@
-import { Attendee } from './../../models/events/attendee.interface';
 import { SingleEventResponse } from './../../models/events/singleEventResponse.interface.ts';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EventsResponse } from '../../models/events/eventsResponse.interface.ts';
 
@@ -17,10 +16,6 @@ export class EventServiceProvider {
     return url;
   }
   public getEvents() {
-    // let token = this.authService.getToken();
-    // let headers = new HttpHeaders();
-    // headers = headers.append(`Authorization`, `Bearer ${token}`);
-    // return this.http.get<EventsResponse>(this.url, {headers}).toPromise();
     return this.http.get<EventsResponse>(this.apiEndpoint()).toPromise();
   }
   // TODO: create new error res when event does exist but NO attendees, in the api

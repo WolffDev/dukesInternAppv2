@@ -1,3 +1,4 @@
+import { Platform } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OneSignal } from '@ionic-native/onesignal';
@@ -5,7 +6,15 @@ import { OneSignal } from '@ionic-native/onesignal';
 @Injectable()
 export class NotificationServiceProvider {
 
-  constructor(public http: HttpClient, private oneSignal: OneSignal) {
+  constructor(public http: HttpClient, private oneSignal: OneSignal, private platform: Platform) {
+   this.platform.ready()
+     .then(() => {
+       this.initNotifications();
+     })
+     .catch(err => console.log(err))
+  }
+
+  public initNotifications() {
     console.log('Hello NotificationServiceProvider Provider');
     this.oneSignal.startInit('8e90792d-c3b7-413a-9cf4-d5c888f4f79b', '630823908238');
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
@@ -20,7 +29,6 @@ export class NotificationServiceProvider {
     
     this.oneSignal.endInit();
   }
-
   public test() {
     console.log('test');
   }

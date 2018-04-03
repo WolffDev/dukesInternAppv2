@@ -1,0 +1,49 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com.telerik.plugins.nativepagetransitions": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-fingerprint-aio": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-touch-id": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "dk.dukesinternappv3.dukesdenmark"
+    }
+  }
+}
